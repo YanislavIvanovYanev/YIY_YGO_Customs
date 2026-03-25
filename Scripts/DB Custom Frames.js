@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         DuelingBook Custom Frames
+// @name         DB Custom Frames
 // @namespace    http://tampermonkey.net/
 // @version      1.0
-// @description  Replace Link monster frames with custom frame
+// @description  Change frames of name specific cards
 // @author       You
 // @match        https://www.duelingbook.com/*
 // @grant        none
@@ -22,10 +22,6 @@
             cardFront.find(".card_color").attr("src", LINK_FUSION_FRAME);
         }
     }
-
-    unsafeWindow.applyCustomFrame = applyCustomFrame;
-    unsafeWindow.LINK_FUSION_NAMES = LINK_FUSION_NAMES;
-    unsafeWindow.LINK_FUSION_FRAME = LINK_FUSION_FRAME;
 
 //     /**
 //      * Reuse the existing function from the script
