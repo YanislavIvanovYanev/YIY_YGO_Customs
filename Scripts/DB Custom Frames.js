@@ -6,7 +6,6 @@
 // @author       You
 // @match        https://www.duelingbook.com/*
 // @grant        none
-// @run-at document-start
 // ==/UserScript==
 
 (function() {
