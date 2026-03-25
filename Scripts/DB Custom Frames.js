@@ -28,9 +28,11 @@
 
         if (LINK_FUSION_NAMES.includes(cardName)) {
             cardFront.find(".card_color").attr("src", LINK_FUSION_FRAME);
-        } else if (EVOLUTION_NAMES.includes(cardName)) {
+        }
+        if (EVOLUTION_NAMES.includes(cardName)) {
             cardFront.find(".card_color").attr("src", EVOLUTION_FRAME);
-        } else if (SPIRITUAL_NAMES.includes(cardName)) {
+        }
+        if (SPIRITUAL_NAMES.includes(cardName)) {
             cardFront.find(".card_color").attr("src", SPIRITUAL_FRAME);
         }
     }
