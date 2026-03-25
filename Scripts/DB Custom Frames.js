@@ -36,48 +36,6 @@
             cardFront.find(".card_color").attr("src", SPIRITUAL_FRAME);
         }
     }
+    unsafeWindow.applyCustomFrame = applyCustomFrame;
 //YaniYa 25
-//     /**
-//      * Reuse the existing function from the script
-//      * Finds a jQuery-wrapped card by its data('cardfront').data('name')
-//      */
-//     function findCardByName(cardArr, names) {
-//         return cardArr.find(card => {
-//             const cardName = card.data('cardfront').data('name');
-//             return names.includes(cardName);
-//         });
-//     }
-
-//     /**
-//      * Replace the frame of Avendread Savior cards
-//      * Accepts a jQuery collection or array of cards
-//      */
-//     function updateFrames(cards) {
-//         const match = findCardByName(Array.from(cards), LINK_FUSION_NAMES);
-
-//         if (match) {
-//             match.find("img.card_color").attr("src", LINK_FUSION_FRAME);
-//         }
-//     }
-
-//     // Initial pass: update any Avendread Savior cards already on board
-//     updateFrames($(".card"));
-
-//     // Watch for dynamically added cards
-//     const observer = new MutationObserver((mutations) => {
-//         for (const m of mutations) {
-//             for (const node of m.addedNodes) {
-//                 if (node.nodeType === 1 && $(node).hasClass("card")) {
-//                     updateFrames([$(node)]);
-//                 } else if (node.nodeType === 1) {
-//                     // Also check descendants in case a card front is added deeper
-//                     const newCards = $(node).find(".card");
-//                     if (newCards.length) updateFrames(newCards);
-//                 }
-//             }
-//         }
-//     });
-
-//     observer.observe(document.body, { childList: true, subtree: true });
-
 })();
