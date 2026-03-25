@@ -12,7 +12,7 @@
     'use strict';
 
     const LINK_FUSION_NAMES = ["Avendread Savior", "a"]
-    const LINK_FUSION_FRAME = "https://yanislavivanovyanev.github.io/YIY_YGO_Customs/Frames/Custom/DarkLinkFusion.png";
+    const LINK_FUSION_FRAME = "https://yanislavivanovyanev.github.io/YIY_YGO_Customs/Frames/Custom/LinkFusion.png";
 
     function applyCustomFrame(cardFront, cardName) {
         if (!cardFront || !cardName) return;
