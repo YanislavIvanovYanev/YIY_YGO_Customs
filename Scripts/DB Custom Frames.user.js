@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DB Custom Frames
 // @namespace    http://tampermonkey.net/
-// @version      1.0
+// @version      1.6
 // @description  Change frames of name specific cards
 // @author       You
 // @match        https://www.duelingbook.com/*

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Custom DB
 // @description  Adds options to customize DB and make it more streamer friendly
-// @version      1.1.71
+// @version      1.2
 // @author       Killburne
 // @license		 MIT
 // @namespace    https://www.yugioh-api.com/
