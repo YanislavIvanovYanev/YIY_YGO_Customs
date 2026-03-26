@@ -12,7 +12,7 @@
 // @include      https://www.duelingbook.com/*
 // @require            https://openuserjs.org/src/libs/sizzle/GM_config.js
 
-// @require https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB Custom Frames.js
+// @require https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB%20Custom%20Frames.user.js
 
 // @grant              GM.getValue
 // @grant              GM.setValue
