@@ -3556,7 +3556,6 @@ $(document).ready(function() {
                 }
 
                 unsafeWindow.applyCustomFrame(card, args[1], args[25]); //my change
-                //console.log(args); //my change (dump)
 
                 if (!getConfigEntry('darkModeCards')) {
                     return ret;
