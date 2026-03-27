@@ -30,7 +30,7 @@
 
     const EVOLUTION_SPELL_FRAME = "https://yanislavivanovyanev.github.io/YIY_YGO_Customs/Frames/Custom/EvolutionSpell.png";
     const EVOLUTION_SPELL_NAMES = ["Revendread Evolution", //Dread HERO Zombyra
-        "Void Expansion in Chaos",
+        
     ];
 
     const SPIRITUAL_FRAME = "https://yanislavivanovyanev.github.io/YIY_YGO_Customs/Frames/Custom/Spiritual.png";

@@ -3,7 +3,7 @@
 // @name         Custom_DB_Custom
 
 // @description  Adds options to customize DB and make it more streamer friendly
-// @version      1.2.3
+// @version      1.2.4
 // @author       Killburne
 // @license		 MIT
 // @namespace    https://www.yugioh-api.com/
@@ -3307,6 +3307,10 @@ $(document).ready(function() {
             if (getConfigEntry('active') && ownSleeveUrl && data.player1.username === (window.unsafeWindow || window).user_username) {
                 data.player1.sleeve = ownSleeveUrl;
             }
+            
+            console.log(data);
+            //unsafeWindow.applyDeckSpecificSleeve()
+
             originalInitPlayers(data);
         };
 
