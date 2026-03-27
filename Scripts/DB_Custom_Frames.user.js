@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DB_Custom_Frames
 // @namespace    http://tampermonkey.net/
-// @version      1.6.1
+// @version      1.6.2
 // @homepageURL  https://github.com/yanislavivanovyanev/YIY_YGO_Customs/
 // @updateURL    https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
 // @downloadURL  https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
@@ -23,24 +23,26 @@
 
     const EVOLUTION_FRAME = "https://yanislavivanovyanev.github.io/YIY_YGO_Customs/Frames/Custom/Evolution.png";
     const EVOLUTION_NAMES = ["Horus the Black Flame Dragon LV8", "Horus the Black Flame Deity", "Ruddy Rose Dragon", //AZDG Uria
-     "Supreme King Gate Infinity", "Sphere of Chaos", "Elemental HERO Spirit of Neos", "Light and Darkness Dragonlord", "Cyberdark End Dragon", //Nverse
+     "Supreme King Gate Infinity", "Sphere of Chaos", "Elemental HERO Spirit of Neos", "Light and Darkness Dragonlord", "Cyberdark End Dragon", //Nothingverse
      "Revendread Executor", "The Wicked Dreadroot", "Underworld Fighter Balmung", "Destiny HERO - Destroyer Phoenix Enforcer", //Dread HERO Zombyra
         "Destiny HERO - Dogma",
     ];
 
     const EVOLUTION_SPELL_FRAME = "https://yanislavivanovyanev.github.io/YIY_YGO_Customs/Frames/Custom/EvolutionSpell.png";
     const EVOLUTION_SPELL_NAMES = ["Revendread Evolution", //Dread HERO Zombyra
-
+        "Void Expansion in Chaos",
     ];
 
     const SPIRITUAL_FRAME = "https://yanislavivanovyanev.github.io/YIY_YGO_Customs/Frames/Custom/Spiritual.png";
     const SPIRITUAL_NAMES = ["Jack-o-Bolan", "Doomkaiser Dragon / Assault Mode", //AZDG Uria
-     /**"Shell of Chaos",**/ "Supreme King Gate Zero", "Black Dragon Colapserpent", "D/D Zero Doom Queen's Throne", //Nothingverse
+     "Shell of Chaos", "Supreme King Gate Zero", "Black Dragon Colapserpent", //Nothingverse
      "Destiny HERO - Plasma", "Destiny HERO - Dangerous", //Dread HERO Zombyra
     ];
 
     const TOKEN_FRAME = "https://yanislavivanovyanev.github.io/YIY_YGO_Customs/Frames/Raw/token_front2.webp?v=3";
-    const TOKEN_NAMES = ["Shell of Chaos"];
+    const TOKEN_NAMES = ["D/D Zero Doom Queen's Throne", "D/D Oblivion King's Throne", //Nothingverse
+
+    ];
 
     function setFrame(cardFront, frame)
     {
@@ -66,5 +68,5 @@
         cardFront.find(".custom").attr("src", SMALL_CUSTOM);
     }
     unsafeWindow.removeCustom = removeCustom;
-//YaniYa 25
+//args [25] = / passcode = [YaniYa]
 })();
