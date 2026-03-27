@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DB_Custom_Frames
 // @namespace    http://tampermonkey.net/
-// @version      1.6.2
+// @version      1.6.3
 // @homepageURL  https://github.com/yanislavivanovyanev/YIY_YGO_Customs/
 // @updateURL    https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
 // @downloadURL  https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
@@ -16,7 +16,7 @@
 
     const SMALL_CUSTOM = "https://yanislavivanovyanev.github.io/YIY_YGO_Customs/Misc/SmallCustom.svg";
 
-    const FRAME_VERSION = "v4";
+    const FRAME_VERSION = "v5";
 
     const LINK_FUSION_FRAME = "https://yanislavivanovyanev.github.io/YIY_YGO_Customs/Frames/Custom/LinkFusion.png";
     const LINK_FUSION_NAMES = ["Avendread Savior"];
