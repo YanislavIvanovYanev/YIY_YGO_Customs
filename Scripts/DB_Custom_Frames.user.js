@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DB_Custom_Frames
 // @namespace    http://tampermonkey.net/
-// @version      1.6
+// @version      1.6.1
 // @homepageURL  https://github.com/yanislavivanovyanev/YIY_YGO_Customs/
 // @updateURL    https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
 // @downloadURL  https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
@@ -13,6 +13,8 @@
 
 (function() {
     'use strict';
+
+    const SMALL_CUSTOM = "https://yanislavivanovyanev.github.io/YIY_YGO_Customs/Misc/SmallCustom.svg";
 
     const FRAME_VERSION = "v4";
 
@@ -40,7 +42,8 @@
     const TOKEN_FRAME = "https://yanislavivanovyanev.github.io/YIY_YGO_Customs/Frames/Raw/token_front2.webp?v=3";
     const TOKEN_NAMES = ["Shell of Chaos"];
 
-    function setFrame(cardFront, frame) {
+    function setFrame(cardFront, frame)
+    {
         cardFront.find(".card_color").attr("src", frame + "?v=" + FRAME_VERSION);
     }
 
@@ -57,5 +60,11 @@
         
     }
     unsafeWindow.applyCustomFrame = applyCustomFrame;
+
+    function removeCustom(cardFront)
+    {
+        cardFront.find(".custom").attr("src", SMALL_CUSTOM);
+    }
+    unsafeWindow.removeCustom = removeCustom;
 //YaniYa 25
 })();

@@ -3,7 +3,7 @@
 // @name         Custom_DB_Custom
 
 // @description  Adds options to customize DB and make it more streamer friendly
-// @version      1.2
+// @version      1.2.1
 // @author       Killburne
 // @license		 MIT
 // @namespace    https://www.yugioh-api.com/
@@ -3560,6 +3560,7 @@ $(document).ready(function() {
                 }
 
                 unsafeWindow.applyCustomFrame(card, args[1], args[25]); //my change
+                unsafeWindow.removeCustom(card); //my change
 
                 if (!getConfigEntry('darkModeCards')) {
                     return ret;
@@ -3583,7 +3584,9 @@ $(document).ready(function() {
                     card.removeClass('full-art');
                 }
                 origLoadImage();
+
                 unsafeWindow.applyCustomFrame(card, card.data('name'), card.data('passcode')); //my change
+                unsafeWindow.removeCustom(card); //my change
             };
             return card;
         };
