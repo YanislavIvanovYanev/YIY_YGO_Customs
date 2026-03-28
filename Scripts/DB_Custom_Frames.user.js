@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DB_Custom_Frames
 // @namespace    http://tampermonkey.net/
-// @version      1.6.4
+// @version      1.6.5
 // @homepageURL  https://github.com/yanislavivanovyanev/YIY_YGO_Customs/
 // @updateURL    https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
 // @downloadURL  https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
@@ -15,9 +15,9 @@
     'use strict';
 
     const SLEEVE_LOOKUP = {
-        "122" : "https://images.duelingbook.com/sleeves/323.jpg", //Uria
-        "107" : "https://images.duelingbook.com/sleeves/134.jpg", //Nothingverse
-        
+        "122" : "323.jpg", //Uria
+        "107" : "134.jpg", //Nothingverse
+        "15" : "284.jpg", //Dark Link Fusion (D.HERO-Zombyra T/D/D)
     }
 
     const SMALL_CUSTOM = "https://yanislavivanovyanev.github.io/YIY_YGO_Customs/Misc/SmallCustom.svg";
@@ -31,19 +31,19 @@
     const EVOLUTION_FRAME = "https://yanislavivanovyanev.github.io/YIY_YGO_Customs/Frames/Custom/Evolution.png";
     const EVOLUTION_NAMES = ["Horus the Black Flame Dragon LV8", "Horus the Black Flame Deity", "Ruddy Rose Dragon", //AZDG Uria
      "Supreme King Gate Infinity", "Sphere of Chaos", "Elemental HERO Spirit of Neos", "Light and Darkness Dragonlord", "Cyberdark End Dragon", //Nothingverse
-     "Revendread Executor", "The Wicked Dreadroot", "Underworld Fighter Balmung", "Destiny HERO - Destroyer Phoenix Enforcer", //Dread HERO Zombyra
+     "Revendread Executor", "The Wicked Dreadroot", "Underworld Fighter Balmung", "Destiny HERO - Destroyer Phoenix Enforcer", //D.HERO-Zombyra T/D/D
         "Destiny HERO - Dogma",
     ];
 
     const EVOLUTION_SPELL_FRAME = "https://yanislavivanovyanev.github.io/YIY_YGO_Customs/Frames/Custom/EvolutionSpell.png";
-    const EVOLUTION_SPELL_NAMES = ["Revendread Evolution", //Dread HERO Zombyra
+    const EVOLUTION_SPELL_NAMES = ["Revendread Evolution", //D.HERO-Zombyra T/D/D
         
     ];
 
     const SPIRITUAL_FRAME = "https://yanislavivanovyanev.github.io/YIY_YGO_Customs/Frames/Custom/Spiritual.png";
     const SPIRITUAL_NAMES = ["Jack-o-Bolan", "Doomkaiser Dragon / Assault Mode", //AZDG Uria
      "Shell of Chaos", "Supreme King Gate Zero", "Black Dragon Colapserpent", //Nothingverse
-     "Destiny HERO - Plasma", "Destiny HERO - Dangerous", //Dread HERO Zombyra
+     "Destiny HERO - Plasma", "Destiny HERO - Dangerous", //D.HERO-Zombyra T/D/D
     ];
 
     const TOKEN_FRAME = "https://yanislavivanovyanev.github.io/YIY_YGO_Customs/Frames/Raw/token_front2.webp?v=3";
