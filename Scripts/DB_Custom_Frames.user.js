@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DB_Custom_Frames
 // @namespace    http://tampermonkey.net/
-// @version      1.6.3
+// @version      1.6.4
 // @homepageURL  https://github.com/yanislavivanovyanev/YIY_YGO_Customs/
 // @updateURL    https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
 // @downloadURL  https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
@@ -14,8 +14,15 @@
 (function() {
     'use strict';
 
+    const SLEEVE_LOOKUP = {
+        "122" : "https://images.duelingbook.com/sleeves/323.jpg", //Uria
+        "107" : "https://images.duelingbook.com/sleeves/134.jpg", //Nothingverse
+        
+    }
+
     const SMALL_CUSTOM = "https://yanislavivanovyanev.github.io/YIY_YGO_Customs/Misc/SmallCustom.svg";
 
+//Frame constants
     const FRAME_VERSION = "v5";
 
     const LINK_FUSION_FRAME = "https://yanislavivanovyanev.github.io/YIY_YGO_Customs/Frames/Custom/LinkFusion.png";
@@ -48,17 +55,17 @@
     {
         cardFront.find(".card_color").attr("src", frame + "?v=" + FRAME_VERSION);
     }
-
     function applyCustomFrame(cardFront, cardName, creator)
     {
-        if (!cardFront || !cardName || creator != "YaniYa")
+        //args [25] = / passcode = [YaniYa]
+        if(!cardFront || !cardName || creator != "YaniYa")
             return;
 
-        if (LINK_FUSION_NAMES.includes(cardName)) setFrame(cardFront, LINK_FUSION_FRAME);
-        else if (EVOLUTION_NAMES.includes(cardName)) setFrame(cardFront, EVOLUTION_FRAME);
-        else if (EVOLUTION_SPELL_NAMES.includes(cardName)) setFrame(cardFront, EVOLUTION_SPELL_FRAME);
-        else if (SPIRITUAL_NAMES.includes(cardName)) setFrame(cardFront, SPIRITUAL_FRAME);
-        else if (TOKEN_NAMES.includes(cardName)) setFrame(cardFront, TOKEN_FRAME);
+        if(LINK_FUSION_NAMES.includes(cardName)) setFrame(cardFront, LINK_FUSION_FRAME);
+        else if(EVOLUTION_NAMES.includes(cardName)) setFrame(cardFront, EVOLUTION_FRAME);
+        else if(EVOLUTION_SPELL_NAMES.includes(cardName)) setFrame(cardFront, EVOLUTION_SPELL_FRAME);
+        else if(SPIRITUAL_NAMES.includes(cardName)) setFrame(cardFront, SPIRITUAL_FRAME);
+        else if(TOKEN_NAMES.includes(cardName)) setFrame(cardFront, TOKEN_FRAME);
         
     }
     unsafeWindow.applyCustomFrame = applyCustomFrame;
@@ -68,5 +75,15 @@
         cardFront.find(".custom").attr("src", SMALL_CUSTOM);
     }
     unsafeWindow.removeCustom = removeCustom;
-//args [25] = / passcode = [YaniYa]
+
+    function applyDeckSpecificSleeveToPlayer(player)
+    {
+        if(player.token in SLEEVE_LOOKUP)  player.sleeve = SLEEVE_LOOKUP[player.token];
+    }
+    function applyDeckSpecificSleeves(player1, player2)
+    {
+        applyDeckSpecificSleeveToPlayer(player1);
+        applyDeckSpecificSleeveToPlayer(player2);
+    }
+    unsafeWindow.applyDeckSpecificSleeves = applyDeckSpecificSleeves;
 })();
