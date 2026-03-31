@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DB_Custom_Frames
 // @namespace    http://tampermonkey.net/
-// @version      1.6.6
+// @version      1.6.7
 // @homepageURL  https://github.com/yanislavivanovyanev/YIY_YGO_Customs/
 // @updateURL    https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
 // @downloadURL  https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
@@ -40,7 +40,7 @@
     ];
 
     const EVOLUTION_NAMES_RX = [
-
+     "Palladium Oracle Mahad", //Yugi
     ];
 
     const EVOLUTION_SPELL_NAMES_RX = [
@@ -48,7 +48,7 @@
     ];
 
     const SPIRITUAL_NAMES_RX = [
-
+     "Royal Straight Slasher", "Kuribabylon", "Multiplying Kuriboh", //Yugi
     ];
 
     const TOKEN_NAMES_RX = [
