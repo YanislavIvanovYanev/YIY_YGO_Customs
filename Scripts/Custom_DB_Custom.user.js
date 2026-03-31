@@ -3,7 +3,7 @@
 // @name         Custom_DB_Custom
 
 // @description  Adds options to customize DB and make it more streamer friendly
-// @version      1.2.6
+// @version      1.2.7
 // @author       Killburne
 // @license		 MIT
 // @namespace    https://www.yugioh-api.com/
@@ -3525,7 +3525,7 @@ $(document).ready(function() {
                 // args[1] = Name
                 // args[3] = Effect
                 // args[23] = Pic
-                //console.log(args[23], args); //my comment change
+                console.log(args[23], args);
 
                 const effect = args[3];
 
