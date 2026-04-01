@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DB_Custom_Frames
 // @namespace    http://tampermonkey.net/
-// @version      1.6.13
+// @version      1.6.14
 // @homepageURL  https://github.com/yanislavivanovyanev/YIY_YGO_Customs/
 // @updateURL    https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
 // @downloadURL  https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
@@ -130,7 +130,7 @@
         if(!cardFront || !cardName)
             return;
 
-        const fullArtName = FULL_ART_NAMES.find(name => card.data('name').includes(name));
+        const fullArtName = FULL_ART_NAMES.find(name => cardFront.data('name').includes(name));
         if(fullArtName)
         {
             //setElement(cardFront, BORDER, ".card_border");
