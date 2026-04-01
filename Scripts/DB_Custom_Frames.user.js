@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DB_Custom_Frames
 // @namespace    http://tampermonkey.net/
-// @version      1.6.14
+// @version      1.7
 // @homepageURL  https://github.com/yanislavivanovyanev/YIY_YGO_Customs/
 // @updateURL    https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
 // @downloadURL  https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
@@ -53,9 +53,10 @@
     const FRAME_URL = URL_START + "Frames/Custom/";
 
     const BORDER = FRAME_URL + "Border.png";
-    const FUSION_FRAME = FRAME_URL + "Fusion.png";
+    const FUSION_FA_FRAME = FRAME_URL + "Fusion.png";
 
     const LINK_FUSION_FRAME = FRAME_URL + "LinkFusion.png";
+    const LINK_FUSION_FA_FRAME = FRAME_URL + "LinkFusionFA.png";
     const EVOLUTION_FRAME = FRAME_URL + "Evolution.png";
     const EVOLUTION_SPELL_FRAME = FRAME_URL + "EvolutionSpell.png";
     const SPIRITUAL_FRAME = FRAME_URL + "Spiritual.png";
@@ -86,7 +87,7 @@
 //YaniYa Frame names
 
     const LINK_FUSION_NAMES_YY = [
-     "Avendread Savior", //D.HERO-Zombyra T/D/D
+     "Avendread Savior", "Evil HERO - The Darkest Knight", //D.HERO-Zombyra T/D/D
     ];
 
     const EVOLUTION_NAMES_YY = [
@@ -131,33 +132,65 @@
             return;
 
         const fullArtName = FULL_ART_NAMES.find(name => cardFront.data('name').includes(name));
-        if(fullArtName)
-        {
-            //setElement(cardFront, BORDER, ".card_border");
-
-            if(color == "Fusion") setFrame(cardFront, FUSION_FRAME);
-            //else if()
-        }
-
-        if(creator == null || creator == undefined || creator == "")
-            return;
-
+        
         if(creator == "reyx200")
         {
+            let matches = true;
+
+            if(fullArtName)
+            {
+                let matches2 = true;
+                if(LINK_FUSION_NAMES_RX.includes(cardName)) setFrame(cardFront, LINK_FUSION_FA_FRAME);
+                // else if(EVOLUTION_NAMES_RX.includes(cardName)) setFrame(cardFront, EVOLUTION_FRAME);
+                // else if(EVOLUTION_SPELL_NAMES_RX.includes(cardName)) setFrame(cardFront, EVOLUTION_SPELL_FRAME);
+                // else if(SPIRITUAL_NAMES_RX.includes(cardName)) setFrame(cardFront, SPIRITUAL_FRAME);
+                // else if(TOKEN_NAMES_RX.includes(cardName)) setFrame(cardFront, TOKEN_FRAME);
+                else matches2 = false;
+                if(matches2)
+                    return;
+            }
+
             if(LINK_FUSION_NAMES_RX.includes(cardName)) setFrame(cardFront, LINK_FUSION_FRAME);
             else if(EVOLUTION_NAMES_RX.includes(cardName)) setFrame(cardFront, EVOLUTION_FRAME);
             else if(EVOLUTION_SPELL_NAMES_RX.includes(cardName)) setFrame(cardFront, EVOLUTION_SPELL_FRAME);
             else if(SPIRITUAL_NAMES_RX.includes(cardName)) setFrame(cardFront, SPIRITUAL_FRAME);
             else if(TOKEN_NAMES_RX.includes(cardName)) setFrame(cardFront, TOKEN_FRAME);
+            else matches = false;
+
+            if(matches)
+                return;
         }
 
         if(creator != "YaniYa")
+        {
+            let matches = true;
+
+            if(fullArtName)
+            {
+                let matches2 = true;
+                if(LINK_FUSION_NAMES_YY.includes(cardName)) setFrame(cardFront, LINK_FUSION_FA_FRAME);
+                // else if(EVOLUTION_NAMES_RX.includes(cardName)) setFrame(cardFront, EVOLUTION_FRAME);
+                // else if(EVOLUTION_SPELL_NAMES_RX.includes(cardName)) setFrame(cardFront, EVOLUTION_SPELL_FRAME);
+                // else if(SPIRITUAL_NAMES_RX.includes(cardName)) setFrame(cardFront, SPIRITUAL_FRAME);
+                // else if(TOKEN_NAMES_RX.includes(cardName)) setFrame(cardFront, TOKEN_FRAME);
+                else matches2 = false;
+                if(matches2)
+                    return;
+            }
+            if(LINK_FUSION_NAMES_YY.includes(cardName)) setFrame(cardFront, LINK_FUSION_FRAME);
+            else if(EVOLUTION_NAMES_YY.includes(cardName)) setFrame(cardFront, EVOLUTION_FRAME);
+            else if(EVOLUTION_SPELL_NAMES_YY.includes(cardName)) setFrame(cardFront, EVOLUTION_SPELL_FRAME);
+            else if(SPIRITUAL_NAMES_YY.includes(cardName)) setFrame(cardFront, SPIRITUAL_FRAME);
+            else if(TOKEN_NAMES_YY.includes(cardName)) setFrame(cardFront, TOKEN_FRAME);
+            else matches = false;
+
+            if(matches)
+                return;
+        }
+
+        if(!fullArtName)
             return;
-        if(LINK_FUSION_NAMES_YY.includes(cardName)) setFrame(cardFront, LINK_FUSION_FRAME);
-        else if(EVOLUTION_NAMES_YY.includes(cardName)) setFrame(cardFront, EVOLUTION_FRAME);
-        else if(EVOLUTION_SPELL_NAMES_YY.includes(cardName)) setFrame(cardFront, EVOLUTION_SPELL_FRAME);
-        else if(SPIRITUAL_NAMES_YY.includes(cardName)) setFrame(cardFront, SPIRITUAL_FRAME);
-        else if(TOKEN_NAMES_YY.includes(cardName)) setFrame(cardFront, TOKEN_FRAME);
+        if(color == "Fusion") setFrame(cardFront, FUSION_FA_FRAME);
         
     }
     unsafeWindow.applyCustomFrame = applyCustomFrame;

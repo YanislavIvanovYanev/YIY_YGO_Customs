@@ -3,7 +3,7 @@
 // @name         Custom_DB_Custom
 
 // @description  Adds options to customize DB and make it more streamer friendly
-// @version      1.2.15
+// @version      1.3
 // @author       Killburne
 // @license		 MIT
 // @namespace    https://www.yugioh-api.com/
