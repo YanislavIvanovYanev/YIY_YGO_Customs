@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DB_Custom_Frames
 // @namespace    http://tampermonkey.net/
-// @version      1.6.7
+// @version      1.6.8
 // @homepageURL  https://github.com/yanislavivanovyanev/YIY_YGO_Customs/
 // @updateURL    https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
 // @downloadURL  https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
@@ -14,9 +14,11 @@
 (function() {
     'use strict';
 
-    const FRAME_VERSION = "v5";
+    const VERSION = "v6";
 
-    const SMALL_CUSTOM = "https://yanislavivanovyanev.github.io/YIY_YGO_Customs/Misc/SmallCustom.svg";
+    const URL_START = "https://yanislavivanovyanev.github.io/YIY_YGO_Customs/";
+
+    const SMALL_CUSTOM = URL_START + "Misc/SmallCustom.svg";
 
     const SLEEVE_LOOKUP = {
         "179" : "338.jpg", //Dark Magicians, 228.jpg is older ver
@@ -25,13 +27,23 @@
         "15" : "332.jpg", //Dark Link Fusion (D.HERO-Zombyra T/D/D)
     }
 
-//Frame urls
+    const FULL_ART_URL = URL_START + "FullArts/";
 
-    const LINK_FUSION_FRAME = "https://yanislavivanovyanev.github.io/YIY_YGO_Customs/Frames/Custom/LinkFusion.png";
-    const EVOLUTION_FRAME = "https://yanislavivanovyanev.github.io/YIY_YGO_Customs/Frames/Custom/Evolution.png";
-    const EVOLUTION_SPELL_FRAME = "https://yanislavivanovyanev.github.io/YIY_YGO_Customs/Frames/Custom/EvolutionSpell.png";
-    const SPIRITUAL_FRAME = "https://yanislavivanovyanev.github.io/YIY_YGO_Customs/Frames/Custom/Spiritual.png";
-    const TOKEN_FRAME = "https://yanislavivanovyanev.github.io/YIY_YGO_Customs/Frames/Raw/token_front2.webp?v=3";
+    const FULL_ART_NAMES = [ //may not be whole so they're applied for normal cards as well as custom cards with slightly different names
+     "Darkest Knight",
+    ] //string should be the exact name of the file too
+
+//Frame urls
+    const FRAME_URL = URL_START + "Frames/Custom/";
+
+    const BORDER = FRAME_URL + "Border.png";
+    const FUSION_FRAME = FRAME_URL + "Fusion.png";
+
+    const LINK_FUSION_FRAME = FRAME_URL + "LinkFusion.png";
+    const EVOLUTION_FRAME = FRAME_URL + "Evolution.png";
+    const EVOLUTION_SPELL_FRAME = FRAME_URL + "EvolutionSpell.png";
+    const SPIRITUAL_FRAME = FRAME_URL + "Spiritual.png";
+    const TOKEN_FRAME = URL_START + "Frames/Raw/token_front2.webp?v=3";
 
 //reyx200 Frame names
 
@@ -85,15 +97,23 @@
     ];
 
 //Frames
+    function setElement(cardFront, element, elementName)
+    {
+        cardFront.find(elementName).attr("src", element + "?v=" + VERSION);
+    }
     function setFrame(cardFront, frame)
     {
-        cardFront.find(".card_color").attr("src", frame + "?v=" + FRAME_VERSION);
+        setElement(cardFront, frame, ".card_color");
     }
-    function applyCustomFrame(cardFront, cardName, creator)
+    function applyCustomFrame(cardFront, cardName, creator, color)
     {
-        //args [25] = / passcode = [YaniYa]
-        if(!cardFront || !cardName || creator == null || creator == undefined || creator == "")
+        if(!cardFront || !cardName)
             return;
+
+        setElement(cardFront, BORDER, ".card_border");
+
+        if(color == "Fusion") setFrame(cardFront, FUSION_FRAME);
+        //else if()
 
         if(creator == "reyx200")
         {
@@ -118,7 +138,7 @@
 //"CUSTOM" icon
     function removeCustom(cardFront)
     {
-        cardFront.find(".custom").attr("src", SMALL_CUSTOM);
+        setElement(cardFront, SMALL_CUSTOM, ".custom");
     }
     unsafeWindow.removeCustom = removeCustom;
 
@@ -133,6 +153,18 @@
         applyDeckSpecificSleeveToPlayer(player2);
     }
     unsafeWindow.applyDeckSpecificSleeves = applyDeckSpecificSleeves;
+
+//Full Arts
+    function applyFullArt(card)
+    {
+        const foundName = FULL_ART_NAMES.find(name => card.data('name').includes(name));
+        if(foundName)
+        {
+            card.data('pic', FULL_ART_URL + foundName + ".png");
+            card.addClass('full-art');
+        }
+    }
+    unsafeWindow.applyFullArt = applyFullArt;
 
 })();
 
