@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DB_Custom_Frames
 // @namespace    http://tampermonkey.net/
-// @version      1.6.12
+// @version      1.6.13
 // @homepageURL  https://github.com/yanislavivanovyanev/YIY_YGO_Customs/
 // @updateURL    https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
 // @downloadURL  https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
@@ -39,12 +39,12 @@
     const style = document.createElement('style');
     style.textContent = `
       .white-outline-text {
-        color: white;
+        color: white !important;
         text-shadow:
           -1px -1px 0 black,
            1px -1px 0 black,
           -1px  1px 0 black,
-           1px  1px 0 black;
+           1px  1px 0 black !important;
       }
     `;
     document.head.appendChild(style);
@@ -130,14 +130,14 @@
         if(!cardFront || !cardName)
             return;
 
-        // const fullArtName = FULL_ART_NAMES.find(name => card.data('name').includes(name));
-        // if(fullArtName)
-        // {
-        //     setElement(cardFront, BORDER, ".card_border");
+        const fullArtName = FULL_ART_NAMES.find(name => card.data('name').includes(name));
+        if(fullArtName)
+        {
+            //setElement(cardFront, BORDER, ".card_border");
 
-        //     if(color == "Fusion") setFrame(cardFront, FUSION_FRAME);
-        //     //else if()
-        // }
+            if(color == "Fusion") setFrame(cardFront, FUSION_FRAME);
+            //else if()
+        }
 
         if(creator == null || creator == undefined || creator == "")
             return;
@@ -190,7 +190,11 @@
             cardFront.data('pic', FULL_ART_URL + fullArtName + ".png");
             cardFront.addClass('full-art');
             cardFront.find('[class*="_txt"]').addClass('white-outline-text');
+            cardFront.find('[class*="_lbl"]').addClass('white-outline-text');
         }
+        cardFront.removeClass('full-art');
+        cardFront.find('[class*="_txt"]').removeClass('white-outline-text');
+        cardFront.find('[class*="_lbl"]').removeClass('white-outline-text');
     }
     unsafeWindow.applyFullArt = applyFullArt;
 
