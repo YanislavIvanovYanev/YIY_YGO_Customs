@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DB_Custom_Frames
 // @namespace    http://tampermonkey.net/
-// @version      1.7.1
+// @version      1.7.2
 // @homepageURL  https://github.com/yanislavivanovyanev/YIY_YGO_Customs/
 // @updateURL    https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
 // @downloadURL  https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
@@ -85,7 +85,7 @@
 //YaniYa Frame names
 
     const LINK_FUSION_NAMES_YY = [
-     "Avendread Savior", "Evil HERO - The Darkest Knight", //D.HERO-Zombyra T/D/D
+     "Avendread Savior", "Evil HERO - The Darkest Knight", "Elemental HERO - The Dark Bright", //D.HERO-Zombyra T/D/D
     ];
 
     const EVOLUTION_NAMES_YY = [
@@ -216,18 +216,18 @@
     function applyFullArt(cardFront)
     {
         const fullArtName = FULL_ART_NAMES.find(name => cardFront.data('name').includes(name));
-        if(fullArtName)
+        if(!fullArtName)
         {
-            cardFront.data('pic', FULL_ART_URL + fullArtName + ".png");
-            cardFront.addClass('full-art');
-            cardFront.find('[class*="_txt"]').addClass('white-outline-text');
-            cardFront.find('[class*="_lbl"]').addClass('white-outline-text');
+            cardFront.removeClass('full-art');
+            cardFront.find('[class*="_txt"]').removeClass('white-outline-text');
+            cardFront.find('[class*="_lbl"]').removeClass('white-outline-text');
+            return;
         }
-        cardFront.removeClass('full-art');
-        cardFront.find('[class*="_txt"]').removeClass('white-outline-text');
-        cardFront.find('[class*="_lbl"]').removeClass('white-outline-text');
+        cardFront.data('pic', FULL_ART_URL + fullArtName + ".png");
+        cardFront.addClass('full-art');
+        cardFront.find('[class*="_txt"]').addClass('white-outline-text');
+        cardFront.find('[class*="_lbl"]').addClass('white-outline-text');
     }
     unsafeWindow.applyFullArt = applyFullArt;
 
 })();
-
