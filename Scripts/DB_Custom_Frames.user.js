@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DB_Custom_Frames
 // @namespace    http://tampermonkey.net/
-// @version      1.7.5
+// @version      1.7.6
 // @homepageURL  https://github.com/yanislavivanovyanev/YIY_YGO_Customs/
 // @updateURL    https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
 // @downloadURL  https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
@@ -10,8 +10,6 @@
 // @match        https://www.duelingbook.com/*
 // @grant        none
 // ==/UserScript==
-
-"Destiny HERO - Destroyer Phoenix Enforcer" - If a >4 lvl Fire (Warrior or Fiend) is Destroyed and sent to the GY: Banish Summon this in atk pos; You can only Token and Banish Summon this turn; Take 500 LP. Summon: All non-Fires lose 500 atk; Destroy 1 enemy card. When this is banished from the field (in this chain) in any way (Once): Banish Summon this. The Summons cannot be negated.
 
 (function() {
     'use strict';
