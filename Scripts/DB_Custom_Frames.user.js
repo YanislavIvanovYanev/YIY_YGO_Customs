@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DB_Custom_Frames
 // @namespace    http://tampermonkey.net/
-// @version      1.7
+// @version      1.7.1
 // @homepageURL  https://github.com/yanislavivanovyanev/YIY_YGO_Customs/
 // @updateURL    https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
 // @downloadURL  https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
@@ -17,8 +17,6 @@
     const VERSION = "v7";
 
     const URL_START = "https://yanislavivanovyanev.github.io/YIY_YGO_Customs/";
-
-    
 
     const SMALL_CUSTOM = URL_START + "Misc/SmallCustom.svg";
 
@@ -161,7 +159,7 @@
                 return;
         }
 
-        if(creator != "YaniYa")
+        if(creator == "YaniYa")
         {
             let matches = true;
 
