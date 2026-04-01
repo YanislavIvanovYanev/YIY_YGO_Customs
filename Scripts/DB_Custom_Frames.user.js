@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DB_Custom_Frames
 // @namespace    http://tampermonkey.net/
-// @version      1.7.3
+// @version      1.7.4
 // @homepageURL  https://github.com/yanislavivanovyanev/YIY_YGO_Customs/
 // @updateURL    https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
 // @downloadURL  https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
@@ -14,7 +14,7 @@
 (function() {
     'use strict';
 
-    const VERSION = "v8";
+    const VERSION = "v9";
 
     const URL_START = "https://yanislavivanovyanev.github.io/YIY_YGO_Customs/";
 
@@ -60,7 +60,7 @@
     const EFFECT_FA_FRAME = FRAME_URL + "EffectFA.png";
     const RITUAL_FA_FRAME = FRAME_URL + "RitualFA.png";
     const FUSION_FA_FRAME = FRAME_URL + "Fusion.png";
-    
+
     const LINK_FUSION_FA_FRAME = FRAME_URL + "LinkFusionFA.png";
     const EVOLUTION_FA_FRAME = FRAME_URL + "EvolutionFA.png";
     const SPIRITUAL_FA_FRAME = FRAME_URL + "SpiritualFA.png";
