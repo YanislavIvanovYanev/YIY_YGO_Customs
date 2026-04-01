@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DB_Custom_Frames
 // @namespace    http://tampermonkey.net/
-// @version      1.6.8
+// @version      1.6.9
 // @homepageURL  https://github.com/yanislavivanovyanev/YIY_YGO_Customs/
 // @updateURL    https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
 // @downloadURL  https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
@@ -14,7 +14,7 @@
 (function() {
     'use strict';
 
-    const VERSION = "v6";
+    const VERSION = "v7";
 
     const URL_START = "https://yanislavivanovyanev.github.io/YIY_YGO_Customs/";
 
@@ -96,11 +96,15 @@
 
     ];
 
-//Frames
+//Helper methods
+
     function setElement(cardFront, element, elementName)
     {
         cardFront.find(elementName).attr("src", element + "?v=" + VERSION);
     }
+    
+
+//Frames
     function setFrame(cardFront, frame)
     {
         setElement(cardFront, frame, ".card_color");
@@ -110,10 +114,17 @@
         if(!cardFront || !cardName)
             return;
 
-        setElement(cardFront, BORDER, ".card_border");
+        const fullArtName = FULL_ART_NAMES.find(name => card.data('name').includes(name));
+        if(fullArtName)
+        {
+            setElement(cardFront, BORDER, ".card_border");
 
-        if(color == "Fusion") setFrame(cardFront, FUSION_FRAME);
-        //else if()
+            if(color == "Fusion") setFrame(cardFront, FUSION_FRAME);
+            //else if()
+        }
+
+        if(creator == null || creator == undefined || creator == "")
+            return;
 
         if(creator == "reyx200")
         {
@@ -157,10 +168,10 @@
 //Full Arts
     function applyFullArt(card)
     {
-        const foundName = FULL_ART_NAMES.find(name => card.data('name').includes(name));
-        if(foundName)
+        const fullArtName = FULL_ART_NAMES.find(name => card.data('name').includes(name));
+        if(fullArtName)
         {
-            card.data('pic', FULL_ART_URL + foundName + ".png");
+            card.data('pic', FULL_ART_URL + fullArtName + ".png");
             card.addClass('full-art');
         }
     }

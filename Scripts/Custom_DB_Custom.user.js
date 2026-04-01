@@ -3,7 +3,7 @@
 // @name         Custom_DB_Custom
 
 // @description  Adds options to customize DB and make it more streamer friendly
-// @version      1.2.9
+// @version      1.2.10
 // @author       Killburne
 // @license		 MIT
 // @namespace    https://www.yugioh-api.com/
@@ -2640,7 +2640,7 @@ $(document).ready(function() {
             const style = document.createElement('style');
             style.id = customArtworkFullArtCssId;
             style.innerText = `
-            .cardfront.full-art .cardfront_content .pic { left: 0 !important; top: 0 !important; width: 100% !important; height: 100% !important; z-index: 0 !important; background-color: #00000000 !important; max-height: 100% }
+            .cardfront.full-art .cardfront_content .pic { left: -100% !important; top: -50% !important; width: 300% !important; height: 200% !important; z-index: 0 !important; background-color: #00000000 !important; max-height: 200% }
             `; //my change
             //.cardfront.full-art .cardfront_content .pic { left: 0 !important; top: 0 !important; width: 100% !important; height: 100% !important; z-index: 99999 !important; max-height: 100% }
             document.body.appendChild(style);
@@ -3593,6 +3593,7 @@ $(document).ready(function() {
 
                 origLoadImage();
 
+                console.log(card); //my change
                 unsafeWindow.applyCustomFrame(card, card.data('name'), card.data('passcode'), card.data('monster_color')); //my change
                 unsafeWindow.removeCustom(card); //my change
             };
