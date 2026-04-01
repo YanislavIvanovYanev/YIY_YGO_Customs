@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DB_Custom_Frames
 // @namespace    http://tampermonkey.net/
-// @version      1.7.7
+// @version      1.7.8
 // @homepageURL  https://github.com/yanislavivanovyanev/YIY_YGO_Customs/
 // @updateURL    https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
 // @downloadURL  https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
@@ -14,7 +14,7 @@
 (function() {
     'use strict';
 
-    const VERSION = "v11";
+    const VERSION = "v12";
 
     const URL_START = "https://yanislavivanovyanev.github.io/YIY_YGO_Customs/";
 
@@ -49,7 +49,7 @@
            1px  1px 0 black !important;
       }
       .monster-line-fullart {
-            color: white !important;
+            background-color: white !important;
             height: 2px !important;
             z-index: -1 !important;
       }
@@ -248,7 +248,7 @@
         }
         if(!smallFullArtName)
         {
-            cardFront.find('name_txt').removeClass('white-outline-text');
+            cardFront.find('.name_txt').removeClass('white-outline-text');
         }
         if(!fullArtName && !smallFullArtName)
         {
@@ -261,7 +261,7 @@
         
         if(smallFullArtName)
         {
-            cardFront.find('name_txt').addClass('white-outline-text');
+            cardFront.find('.name_txt').addClass('white-outline-text');
             return;
         }
         cardFront.find('.card_border, .card_color').css('z-index', '-1');
