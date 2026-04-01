@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DB_Custom_Frames
 // @namespace    http://tampermonkey.net/
-// @version      1.6.10
+// @version      1.6.11
 // @homepageURL  https://github.com/yanislavivanovyanev/YIY_YGO_Customs/
 // @updateURL    https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
 // @downloadURL  https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
@@ -18,6 +18,8 @@
 
     const URL_START = "https://yanislavivanovyanev.github.io/YIY_YGO_Customs/";
 
+    
+
     const SMALL_CUSTOM = URL_START + "Misc/SmallCustom.svg";
 
     const SLEEVE_LOOKUP = {
@@ -27,11 +29,25 @@
         "15" : "332.jpg", //Dark Link Fusion (D.HERO-Zombyra T/D/D)
     }
 
+//Full Art consts
     const FULL_ART_URL = URL_START + "FullArts/";
 
     const FULL_ART_NAMES = [ //may not be whole so they're applied for normal cards as well as custom cards with slightly different names
      "Darkest Knight",
     ] //string should be the exact name of the file too
+
+    const style = document.createElement('style');
+    style.textContent = `
+      .white-outline-text {
+        color: white;
+        text-shadow:
+          -1px -1px 0 black,
+           1px -1px 0 black,
+          -1px  1px 0 black,
+           1px  1px 0 black;
+      }
+    `;
+    document.head.appendChild(style);
 
 //Frame urls
     const FRAME_URL = URL_START + "Frames/Custom/";
@@ -166,13 +182,14 @@
     unsafeWindow.applyDeckSpecificSleeves = applyDeckSpecificSleeves;
 
 //Full Arts
-    function applyFullArt(card)
+    function applyFullArt(cardFront)
     {
-        const fullArtName = FULL_ART_NAMES.find(name => card.data('name').includes(name));
+        const fullArtName = FULL_ART_NAMES.find(name => cardFront.data('name').includes(name));
         if(fullArtName)
         {
-            card.data('pic', FULL_ART_URL + fullArtName + ".png");
-            card.addClass('full-art');
+            cardFront.data('pic', FULL_ART_URL + fullArtName + ".png");
+            cardFront.addClass('full-art');
+            cardFront.querySelectorAll('[class*="_txt"]').forEach(el => { el.classList.add('white-outline-text'); });
         }
     }
     unsafeWindow.applyFullArt = applyFullArt;
