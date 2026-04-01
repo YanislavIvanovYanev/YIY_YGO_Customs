@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DB_Custom_Frames
 // @namespace    http://tampermonkey.net/
-// @version      1.6.11
+// @version      1.6.12
 // @homepageURL  https://github.com/yanislavivanovyanev/YIY_YGO_Customs/
 // @updateURL    https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
 // @downloadURL  https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
@@ -189,7 +189,7 @@
         {
             cardFront.data('pic', FULL_ART_URL + fullArtName + ".png");
             cardFront.addClass('full-art');
-            cardFront.querySelectorAll('[class*="_txt"]').forEach(el => { el.classList.add('white-outline-text'); });
+            cardFront.find('[class*="_txt"]').addClass('white-outline-text');
         }
     }
     unsafeWindow.applyFullArt = applyFullArt;
