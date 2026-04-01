@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DB_Custom_Frames
 // @namespace    http://tampermonkey.net/
-// @version      1.7.6
+// @version      1.7.7
 // @homepageURL  https://github.com/yanislavivanovyanev/YIY_YGO_Customs/
 // @updateURL    https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
 // @downloadURL  https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
@@ -14,7 +14,7 @@
 (function() {
     'use strict';
 
-    const VERSION = "v10";
+    const VERSION = "v11";
 
     const URL_START = "https://yanislavivanovyanev.github.io/YIY_YGO_Customs/";
 
@@ -31,7 +31,7 @@
     const FULL_ART_URL = URL_START + "FullArts/";
 
     const FULL_ART_NAMES = [ //may not be whole so they're applied for normal cards as well as custom cards with slightly different names
-     "Darkest Knight", "Slifer", "Destroyer Phoenix", "- Plasma", " Atomic", "Dominance", "Zorc",
+     "Darkest Knight", "Slifer", "Destroyer Phoenix", "- Plasma", "Atomic", "Dominance", "Zorc", "Uria,",
     ]; //string should be the exact name of the file too
 
     const SMALL_FULL_ART_NAMES = [ //doesn't change anything other than the picture
@@ -47,6 +47,11 @@
            1px -1px 0 black,
           -1px  1px 0 black,
            1px  1px 0 black !important;
+      }
+      .monster-line-fullart {
+            color: white !important;
+            height: 2px !important;
+            z-index: -1 !important;
       }
     `;
     document.head.appendChild(style);
@@ -233,17 +238,34 @@
     {
         const fullArtName = FULL_ART_NAMES.find(name => cardFront.data('name').includes(name));
         const smallFullArtName = SMALL_FULL_ART_NAMES.find(name => cardFront.data('name').includes(name));
+
+        if(!fullArtName)
+        {
+            cardFront.find('.card_border, .card_color').css('z-index', '0');
+            cardFront.find('.monster_line').removeClass('monster-line-fullart');
+            cardFront.find('[class*="_txt"]').removeClass('white-outline-text');
+            cardFront.find('[class*="_lbl"]').removeClass('white-outline-text');
+        }
+        if(!smallFullArtName)
+        {
+            cardFront.find('name_txt').removeClass('white-outline-text');
+        }
         if(!fullArtName && !smallFullArtName)
         {
             cardFront.removeClass('full-art');
-            cardFront.find('[class*="_txt"]').removeClass('white-outline-text');
-            cardFront.find('[class*="_lbl"]').removeClass('white-outline-text');
             return;
         }
+
         cardFront.data('pic', FULL_ART_URL + (fullArtName != undefined ? fullArtName : smallFullArtName) + ".png");
         cardFront.addClass('full-art');
+        
         if(smallFullArtName)
+        {
+            cardFront.find('name_txt').addClass('white-outline-text');
             return;
+        }
+        cardFront.find('.card_border, .card_color').css('z-index', '-1');
+        cardFront.find('.monster_line').addClass('monster-line-fullart');
         cardFront.find('[class*="_txt"]').addClass('white-outline-text');
         cardFront.find('[class*="_lbl"]').addClass('white-outline-text');
     }
