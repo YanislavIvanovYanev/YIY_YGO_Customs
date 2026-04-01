@@ -31,8 +31,12 @@
     const FULL_ART_URL = URL_START + "FullArts/";
 
     const FULL_ART_NAMES = [ //may not be whole so they're applied for normal cards as well as custom cards with slightly different names
-     "Darkest Knight",
-    ] //string should be the exact name of the file too
+     "Darkest Knight", "Slifer", "Destroyer Phoenix", "- Plasma", " Atomic", "Dominance", "Zorc",
+    ]; //string should be the exact name of the file too
+
+    const SMALL_FULL_ART_NAMES = [ //doesn't change anything other than the picture
+     "Dark Law", "dread Slayer",
+    ];
 
     const style = document.createElement('style');
     style.textContent = `
@@ -51,14 +55,20 @@
     const FRAME_URL = URL_START + "Frames/Custom/";
 
     const BORDER = FRAME_URL + "Border.png";
+    const TOKEN_FRAME = URL_START + "Frames/Raw/token_front2.webp?v=3";
+
+    const EFFECT_FA_FRAME = FRAME_URL + "EffectFA.png";
+    const RITUAL_FA_FRAME = FRAME_URL + "RitualFA.png";
     const FUSION_FA_FRAME = FRAME_URL + "Fusion.png";
+    
+    const LINK_FUSION_FA_FRAME = FRAME_URL + "LinkFusionFA.png";
+    const EVOLUTION_FA_FRAME = FRAME_URL + "EvolutionFA.png";
+    const SPIRITUAL_FA_FRAME = FRAME_URL + "SpiritualFA.png";
 
     const LINK_FUSION_FRAME = FRAME_URL + "LinkFusion.png";
-    const LINK_FUSION_FA_FRAME = FRAME_URL + "LinkFusionFA.png";
     const EVOLUTION_FRAME = FRAME_URL + "Evolution.png";
     const EVOLUTION_SPELL_FRAME = FRAME_URL + "EvolutionSpell.png";
     const SPIRITUAL_FRAME = FRAME_URL + "Spiritual.png";
-    const TOKEN_FRAME = URL_START + "Frames/Raw/token_front2.webp?v=3";
 
 //reyx200 Frame names
 
@@ -139,6 +149,8 @@
             {
                 let matches2 = true;
                 if(LINK_FUSION_NAMES_RX.includes(cardName)) setFrame(cardFront, LINK_FUSION_FA_FRAME);
+                else if(EVOLUTION_NAMES_RX.includes(cardName)) setFrame(cardFront, EVOLUTION_FA_FRAME);
+                else if(SPIRITUAL_NAMES_RX.includes(cardName)) setFrame(cardFront, SPIRITUAL_FA_FRAME);
                 // else if(EVOLUTION_NAMES_RX.includes(cardName)) setFrame(cardFront, EVOLUTION_FRAME);
                 // else if(EVOLUTION_SPELL_NAMES_RX.includes(cardName)) setFrame(cardFront, EVOLUTION_SPELL_FRAME);
                 // else if(SPIRITUAL_NAMES_RX.includes(cardName)) setFrame(cardFront, SPIRITUAL_FRAME);
@@ -167,6 +179,8 @@
             {
                 let matches2 = true;
                 if(LINK_FUSION_NAMES_YY.includes(cardName)) setFrame(cardFront, LINK_FUSION_FA_FRAME);
+                else if(EVOLUTION_NAMES_YY.includes(cardName)) setFrame(cardFront, EVOLUTION_FA_FRAME);
+                else if(SPIRITUAL_NAMES_YY.includes(cardName)) setFrame(cardFront, SPIRITUAL_FA_FRAME);
                 // else if(EVOLUTION_NAMES_RX.includes(cardName)) setFrame(cardFront, EVOLUTION_FRAME);
                 // else if(EVOLUTION_SPELL_NAMES_RX.includes(cardName)) setFrame(cardFront, EVOLUTION_SPELL_FRAME);
                 // else if(SPIRITUAL_NAMES_RX.includes(cardName)) setFrame(cardFront, SPIRITUAL_FRAME);
@@ -188,7 +202,9 @@
 
         if(!fullArtName)
             return;
-        if(color == "Fusion") setFrame(cardFront, FUSION_FA_FRAME);
+        if(color == "Effect") setFrame(cardFront, EFFECT_FA_FRAME);
+        else if(color == "Ritual") setFrame(cardFront, RITUAL_FA_FRAME);
+        else if(color == "Fusion") setFrame(cardFront, FUSION_FA_FRAME);
         
     }
     unsafeWindow.applyCustomFrame = applyCustomFrame;
@@ -216,7 +232,8 @@
     function applyFullArt(cardFront)
     {
         const fullArtName = FULL_ART_NAMES.find(name => cardFront.data('name').includes(name));
-        if(!fullArtName)
+        const smallFullArtName = SMALL_FULL_ART_NAMES.find(name => cardFront.data('name').includes(name));
+        if(!fullArtName && !smallFullArtName)
         {
             cardFront.removeClass('full-art');
             cardFront.find('[class*="_txt"]').removeClass('white-outline-text');
@@ -225,6 +242,8 @@
         }
         cardFront.data('pic', FULL_ART_URL + fullArtName + ".png");
         cardFront.addClass('full-art');
+        if(smallFullArtName)
+            return;
         cardFront.find('[class*="_txt"]').addClass('white-outline-text');
         cardFront.find('[class*="_lbl"]').addClass('white-outline-text');
     }

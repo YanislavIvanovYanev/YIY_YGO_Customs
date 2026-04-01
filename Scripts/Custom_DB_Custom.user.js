@@ -2640,7 +2640,7 @@ $(document).ready(function() {
             const style = document.createElement('style');
             style.id = customArtworkFullArtCssId;
             style.innerText = `
-            .cardfront.full-art .cardfront_content .pic { left: -100% !important; top: -50% !important; width: 300% !important; height: 200% !important; z-index: 0 !important; background-color: #00000000 !important; max-height: 200% }
+            .cardfront.full-art .cardfront_content .pic { left: -250% !important; top: -50% !important; width: 600% !important; height: 200% !important; z-index: 0 !important; background-color: #00000000 !important; max-height: 200% }
             `; //my change
             //.cardfront.full-art .cardfront_content .pic { left: 0 !important; top: 0 !important; width: 100% !important; height: 100% !important; z-index: 99999 !important; max-height: 100% }
             document.body.appendChild(style);
