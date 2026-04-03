@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DB_Custom_Frames
 // @namespace    http://tampermonkey.net/
-// @version      1.7.8
+// @version      1.7.9
 // @homepageURL  https://github.com/yanislavivanovyanev/YIY_YGO_Customs/
 // @updateURL    https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
 // @downloadURL  https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
@@ -272,3 +272,19 @@
     unsafeWindow.applyFullArt = applyFullArt;
 
 })();
+
+$(document).ready(function () {
+
+    $("#bulletin_txt, #yugioh_logo, #db_logo, #donate_btn, #welcome_buttons, #screenshot_btn, #mute_btn, .social_btn, .privacy_policy").css({
+        display: "none",
+        pointerEvents: "none",
+        visibility: "hidden"
+    });
+
+    const brionac = document.getElementById("brionac_large");
+    brionac.style.setProperty("width", "1075px", "important");
+    brionac.style.setProperty("height", "1075px", "important");
+    brionac.style.setProperty("left", "130px", "important");
+    brionac.style.setProperty("top", "-150px", "important");
+
+});
