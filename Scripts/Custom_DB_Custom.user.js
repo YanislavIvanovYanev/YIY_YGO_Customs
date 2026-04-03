@@ -1,5 +1,6 @@
 // ==UserScript==
 
+//my change v
 // @name         Custom_DB_Custom
 
 // @description  Adds options to customize DB and make it more streamer friendly
@@ -9,6 +10,7 @@
 // @namespace    https://www.yugioh-api.com/
 // @homepageURL  https://github.com/killburne/custom-duelingbook/
 
+//my change v
 // @updateURL    https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/Custom_DB_Custom.user.js
 // @downloadURL  https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/Custom_DB_Custom.user.js
 
@@ -16,6 +18,7 @@
 // @include      https://www.duelingbook.com/*
 // @require            https://openuserjs.org/src/libs/sizzle/GM_config.js
 
+//my change v
 // @require            https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
 
 // @grant              GM.getValue
