@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DB_Custom_Frames
 // @namespace    http://tampermonkey.net/
-// @version      1.7.9
+// @version      1.8
 // @homepageURL  https://github.com/yanislavivanovyanev/YIY_YGO_Customs/
 // @updateURL    https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
 // @downloadURL  https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
@@ -275,7 +275,7 @@
 
 $(document).ready(function () {
 
-    $("#bulletin_txt, #yugioh_logo, #db_logo, #donate_btn, #welcome_buttons, #screenshot_btn, #mute_btn, .social_btn, .privacy_policy").css({
+    $("#bulletin_txt, #yugioh_logo, #db_logo, #donate_btn, #welcome_btn, #forum_btn, #rules_btn, #blog_btn, #screenshot_btn, #mute_btn, .social_btn, .privacy_policy").css({
         display: "none",
         pointerEvents: "none",
         visibility: "hidden"
@@ -284,7 +284,15 @@ $(document).ready(function () {
     const brionac = document.getElementById("brionac_large");
     brionac.style.setProperty("width", "1075px", "important");
     brionac.style.setProperty("height", "1075px", "important");
-    brionac.style.setProperty("left", "130px", "important");
+    brionac.style.setProperty("left", "100px", "important");
     brionac.style.setProperty("top", "-150px", "important");
+
+    const login = document.getElementById("login_box");
+    login.style.setProperty("left", "-50px", "important");
+    login.style.setProperty("bottom", "-40px", "important");
+
+    const duelBtn = document.getElementById("duel_btn");
+    duelBtn.style.setProperty("left", "220px", "important");
+    duelBtn.style.setProperty("top", "-440px", "important");
 
 });
