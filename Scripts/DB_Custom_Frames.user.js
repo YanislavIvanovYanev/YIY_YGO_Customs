@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DB_Custom_Frames
 // @namespace    http://tampermonkey.net/
-// @version      1.8.1
+// @version      1.8.2
 // @homepageURL  https://github.com/yanislavivanovyanev/YIY_YGO_Customs/
 // @updateURL    https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
 // @downloadURL  https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
@@ -289,10 +289,10 @@ $(document).ready(function () {
 
     const login = document.getElementById("login_box");
     login.style.setProperty("left", "-50px", "important");
-    login.style.setProperty("bottom", "-40px", "important");
+    login.style.setProperty("top", "425px", "important");
 
     const duelBtn = document.getElementById("duel_btn");
-    duelBtn.style.setProperty("left", "220px", "important");
-    duelBtn.style.setProperty("top", "440px", "important");
+    duelBtn.style.setProperty("left", "210px", "important");
+    duelBtn.style.setProperty("top", "435px", "important");
 
 });
