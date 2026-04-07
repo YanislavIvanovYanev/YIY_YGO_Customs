@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DB_Custom_Frames
 // @namespace    http://tampermonkey.net/
-// @version      1.8.2
+// @version      1.8.3
 // @homepageURL  https://github.com/yanislavivanovyanev/YIY_YGO_Customs/
 // @updateURL    https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
 // @downloadURL  https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
@@ -31,7 +31,7 @@
     const FULL_ART_URL = URL_START + "FullArts/";
 
     const FULL_ART_NAMES = [ //may not be whole so they're applied for normal cards as well as custom cards with slightly different names
-     "Darkest Knight", "Slifer", "Destroyer Phoenix", "- Plasma", "Atomic", "Dominance", "Zorc", "Uria,",
+     "Darkest Knight", "Slifer", "Destroyer Phoenix", "- Plasma", "Atomic", "Dominance", "Zorc", "Uria,", "The Unstoppable Exodia Incarnate",
     ]; //string should be the exact name of the file too
 
     const SMALL_FULL_ART_NAMES = [ //doesn't change anything other than the picture
@@ -108,6 +108,7 @@
      "Supreme King Gate Infinity", "Sphere of Chaos", "Elemental HERO Spirit of Neos", "Light and Darkness Dragonlord", "Cyberdark End Dragon", //Nothingverse
      "Revendread Executor", "The Wicked Dreadroot", "Underworld Fighter Balmung", "Destiny HERO - Destroyer Phoenix Enforcer", //D.HERO-Zombyra T/D/D
         "Destiny HERO - Dogma",
+     "The Unstoppable Exodia Incarnate", //Exodia
     ];
 
     const EVOLUTION_SPELL_NAMES_YY = [
