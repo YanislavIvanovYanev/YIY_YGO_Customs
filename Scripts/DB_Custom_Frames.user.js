@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DB_Custom_Frames
 // @namespace    http://tampermonkey.net/
-// @version      1.8.3
+// @version      1.8.4
 // @homepageURL  https://github.com/yanislavivanovyanev/YIY_YGO_Customs/
 // @updateURL    https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
 // @downloadURL  https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
@@ -14,7 +14,7 @@
 (function() {
     'use strict';
 
-    const VERSION = "v12";
+    const VERSION = "v13";
 
     const URL_START = "https://yanislavivanovyanev.github.io/YIY_YGO_Customs/";
 
@@ -254,24 +254,30 @@
         if(!fullArtName && !smallFullArtName)
         {
             cardFront.removeClass('full-art');
+            cardFront.find('.effect_txt').css('z-index', '0');
+            cardFront.find('.black_arrow').css('z-index', '0');
             return;
         }
 
-        cardFront.data('pic', FULL_ART_URL + (fullArtName != undefined ? fullArtName : smallFullArtName) + ".png");
+    //both
         cardFront.addClass('full-art');
-        
+        cardFront.data('pic', FULL_ART_URL + (fullArtName != undefined ? fullArtName : smallFullArtName) + ".png");
+        cardFront.find('.effect_txt').css('z-index', '-1');
+        cardFront.find('.black_arrow').css('z-index', '-1');
+    //smallFullArt
         if(smallFullArtName)
         {
             cardFront.find('.name_txt').addClass('white-outline-text');
             return;
         }
+    //fullArt
         cardFront.find('.card_border, .card_color').css('z-index', '-1');
         cardFront.find('.monster_line').addClass('monster-line-fullart');
-        cardFront.find('[class*="_txt"]').addClass('white-outline-text');
         cardFront.find('[class*="_lbl"]').addClass('white-outline-text');
+        cardFront.find('[class*="_txt"]').addClass('white-outline-text');
     }
-    unsafeWindow.applyFullArt = applyFullArt;
 
+    unsafeWindow.applyFullArt = applyFullArt;
 })();
 
 $(document).ready(function () {
@@ -282,7 +288,7 @@ $(document).ready(function () {
         visibility: "hidden"
     });
 
-    const brionac = document.getElementById("brionac_large");
+    const brionac = document.getElementById("brionac_large"); //title character
     brionac.style.setProperty("width", "1075px", "important");
     brionac.style.setProperty("height", "1075px", "important");
     brionac.style.setProperty("left", "100px", "important");
