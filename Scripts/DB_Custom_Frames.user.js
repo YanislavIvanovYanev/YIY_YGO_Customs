@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DB_Custom_Frames
 // @namespace    http://tampermonkey.net/
-// @version      1.8.4
+// @version      1.8.5
 // @homepageURL  https://github.com/yanislavivanovyanev/YIY_YGO_Customs/
 // @updateURL    https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
 // @downloadURL  https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
@@ -14,7 +14,7 @@
 (function() {
     'use strict';
 
-    const VERSION = "v13";
+    const VERSION = "v14";
 
     const URL_START = "https://yanislavivanovyanev.github.io/YIY_YGO_Customs/";
 
@@ -100,26 +100,27 @@
 //YaniYa Frame names
 
     const LINK_FUSION_NAMES_YY = [
-     "Avendread Savior", "Evil HERO - The Darkest Knight", "Elemental HERO - The Dark Bright", //D.HERO-Zombyra T/D/D
+     "Elemental HERO - The Dark Bright", "Masked HERO - The Dark Law", "Lord of The Dark", "Evil HERO - The Dark Gaia", "Evil HERO - The Darkest Knight", //D.HERO-Zombyra T/D/D
+        "The Neosphere of Darkness", "Destiny HERO - Dusktopia",
     ];
 
     const EVOLUTION_NAMES_YY = [
      "Horus the Black Flame Dragon LV8", "Horus the Black Flame Deity", "Ruddy Rose Dragon", //AZDG Uria
      "Supreme King Gate Infinity", "Sphere of Chaos", "Elemental HERO Spirit of Neos", "Light and Darkness Dragonlord", "Cyberdark End Dragon", //Nothingverse
-     "Revendread Executor", "The Wicked Dreadroot", "Underworld Fighter Balmung", "Destiny HERO - Destroyer Phoenix Enforcer", //D.HERO-Zombyra T/D/D
-        "Destiny HERO - Dogma",
+     "Underworld Fighter Balmung", "The Dark Crusader", "Despair from The Dark", "Destiny HERO - Dogma", "Destiny HERO - Destroyer Phoenix Enforcer", //D.HERO-Zombyra T/D/D
+        "RevenDread Executor", "Evil HERO - Infernal Gainer", "Evil HERO - Sinister Necrom", "Evil HERO - Malicious Edge", "The Wicked Dreadroot",
      "The Unstoppable Exodia Incarnate", //Exodia
     ];
 
     const EVOLUTION_SPELL_NAMES_YY = [
-     "Revendread Evolution", //D.HERO-Zombyra T/D/D
+     "RevenDread Evolution", //D.HERO-Zombyra T/D/D
         
     ];
 
     const SPIRITUAL_NAMES_YY = [
      "Jack-o-Bolan", "Doomkaiser Dragon / Assault Mode", //AZDG Uria
      "Shell of Chaos", "Supreme King Gate Zero", "Black Dragon Colapserpent", //Nothingverse
-     "Destiny HERO - Plasma", "Destiny HERO - Dangerous", //D.HERO-Zombyra T/D/D
+     "Fear from The Dark", "Destiny HERO - Plasma", "Elemental HERO - The Deep Darkness", //D.HERO-Zombyra T/D/D
     ];
 
     const TOKEN_NAMES_YY = [
@@ -242,6 +243,7 @@
 
         if(!fullArtName)
         {
+            cardFront.find('.effect_txt').css('z-index', '0');
             cardFront.find('.card_border, .card_color').css('z-index', '0');
             cardFront.find('.monster_line').removeClass('monster-line-fullart');
             cardFront.find('[class*="_txt"]').removeClass('white-outline-text');
@@ -254,7 +256,6 @@
         if(!fullArtName && !smallFullArtName)
         {
             cardFront.removeClass('full-art');
-            cardFront.find('.effect_txt').css('z-index', '0');
             cardFront.find('.black_arrow').css('z-index', '0');
             return;
         }
@@ -262,7 +263,6 @@
     //both
         cardFront.addClass('full-art');
         cardFront.data('pic', FULL_ART_URL + (fullArtName != undefined ? fullArtName : smallFullArtName) + ".png");
-        cardFront.find('.effect_txt').css('z-index', '-1');
         cardFront.find('.black_arrow').css('z-index', '-1');
     //smallFullArt
         if(smallFullArtName)
@@ -271,6 +271,7 @@
             return;
         }
     //fullArt
+        cardFront.find('.effect_txt').css('z-index', '-1');
         cardFront.find('.card_border, .card_color').css('z-index', '-1');
         cardFront.find('.monster_line').addClass('monster-line-fullart');
         cardFront.find('[class*="_lbl"]').addClass('white-outline-text');
