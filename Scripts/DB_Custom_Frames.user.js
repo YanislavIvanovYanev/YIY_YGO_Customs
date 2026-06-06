@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DB_Custom_Frames
 // @namespace    http://tampermonkey.net/
-// @version      1.8.5
+// @version      1.8.6
 // @homepageURL  https://github.com/yanislavivanovyanev/YIY_YGO_Customs/
 // @updateURL    https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
 // @downloadURL  https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
@@ -14,7 +14,7 @@
 (function() {
     'use strict';
 
-    const VERSION = "v14";
+    const VERSION = "v2.0";
 
     const URL_START = "https://yanislavivanovyanev.github.io/YIY_YGO_Customs/";
 
@@ -158,10 +158,8 @@
                 if(LINK_FUSION_NAMES_RX.includes(cardName)) setFrame(cardFront, LINK_FUSION_FA_FRAME);
                 else if(EVOLUTION_NAMES_RX.includes(cardName)) setFrame(cardFront, EVOLUTION_FA_FRAME);
                 else if(SPIRITUAL_NAMES_RX.includes(cardName)) setFrame(cardFront, SPIRITUAL_FA_FRAME);
-                // else if(EVOLUTION_NAMES_RX.includes(cardName)) setFrame(cardFront, EVOLUTION_FRAME);
-                // else if(EVOLUTION_SPELL_NAMES_RX.includes(cardName)) setFrame(cardFront, EVOLUTION_SPELL_FRAME);
-                // else if(SPIRITUAL_NAMES_RX.includes(cardName)) setFrame(cardFront, SPIRITUAL_FRAME);
-                // else if(TOKEN_NAMES_RX.includes(cardName)) setFrame(cardFront, TOKEN_FRAME);
+                // else if(EVOLUTION_SPELL_NAMES_RX.includes(cardName)) setFrame(cardFront, EVOLUTION_SPELL_FA_FRAME);
+                // else if(TOKEN_NAMES_RX.includes(cardName)) setFrame(cardFront, TOKEN_FA_FRAME);
                 else matches2 = false;
                 if(matches2)
                     return;
@@ -188,10 +186,8 @@
                 if(LINK_FUSION_NAMES_YY.includes(cardName)) setFrame(cardFront, LINK_FUSION_FA_FRAME);
                 else if(EVOLUTION_NAMES_YY.includes(cardName)) setFrame(cardFront, EVOLUTION_FA_FRAME);
                 else if(SPIRITUAL_NAMES_YY.includes(cardName)) setFrame(cardFront, SPIRITUAL_FA_FRAME);
-                // else if(EVOLUTION_NAMES_RX.includes(cardName)) setFrame(cardFront, EVOLUTION_FRAME);
-                // else if(EVOLUTION_SPELL_NAMES_RX.includes(cardName)) setFrame(cardFront, EVOLUTION_SPELL_FRAME);
-                // else if(SPIRITUAL_NAMES_RX.includes(cardName)) setFrame(cardFront, SPIRITUAL_FRAME);
-                // else if(TOKEN_NAMES_RX.includes(cardName)) setFrame(cardFront, TOKEN_FRAME);
+                // else if(EVOLUTION_SPELL_NAMES_YY.includes(cardName)) setFrame(cardFront, EVOLUTION_SPELL_FA_FRAME);
+                // else if(TOKEN_NAMES_YY.includes(cardName)) setFrame(cardFront, TOKEN_FA_FRAME);
                 else matches2 = false;
                 if(matches2)
                     return;
