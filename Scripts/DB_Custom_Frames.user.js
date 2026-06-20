@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DB_Custom_Frames
 // @namespace    http://tampermonkey.net/
-// @version      1.9.3
+// @version      1.9.4
 // @homepageURL  https://github.com/yanislavivanovyanev/YIY_YGO_Customs/
 // @updateURL    https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
 // @downloadURL  https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
@@ -36,11 +36,11 @@
     ]; //string should be the exact name of the file too
 
     const SMALL_FULL_ART_NAMES = [ //doesn't change anything other than the picture
-     "Dark Law", "vendread Slayer", "Doom Lord", 
+     "Dark Law", "d Slayer", "Doom Lord", 
     ];
 
     const PENDULUM_FULL_ART_NAMES = [
-     "dread Slayer",
+     "read Slayer",
     ];
 
     const style = document.createElement('style');
@@ -48,10 +48,10 @@
       .white-outline-text {
         color: white !important;
         text-shadow:
-          -1px -1px 0 black,
-           1px -1px 0 black,
-          -1px  1px 0 black,
-           1px  1px 0 black !important;
+          -2px -2px 0 black,
+           2px -2px 0 black,
+          -2px  2px 0 black,
+           2px  2px 0 black !important;
       }
       .monster-line-fullart {
             background-color: white !important;
@@ -239,9 +239,9 @@
 //Full Arts
     function applyFullArt(cardFront, isPendulum)
     {
-        const fullArtName = !isPendulum && FULL_ART_NAMES.find(name => cardFront.data('name').includes(name));
-        const smallFullArtName = !isPendulum && SMALL_FULL_ART_NAMES.find(name => cardFront.data('name').includes(name));
-        const pendulumFullArtName = isPendulum && PENDULUM_FULL_ART_NAMES.find(name => cardFront.data('name').includes(name));
+        const fullArtName = !isPendulum ? FULL_ART_NAMES.find(name => cardFront.data('name').includes(name)) : undefined;
+        const smallFullArtName = !isPendulum ? SMALL_FULL_ART_NAMES.find(name => cardFront.data('name').includes(name)) : undefined;
+        const pendulumFullArtName = isPendulum ? PENDULUM_FULL_ART_NAMES.find(name => cardFront.data('name').includes(name)) : undefined;
 
         if(!fullArtName)
         {
