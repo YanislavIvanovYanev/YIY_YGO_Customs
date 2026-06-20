@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DB_Custom_Frames
 // @namespace    http://tampermonkey.net/
-// @version      1.9.4
+// @version      1.9.5
 // @homepageURL  https://github.com/yanislavivanovyanev/YIY_YGO_Customs/
 // @updateURL    https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
 // @downloadURL  https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
@@ -24,14 +24,15 @@
         "179" : "338.jpg", //Dark Magicians, 228.jpg is older ver
         "122" : "323.jpg", //Uria
         "107" : "134.jpg", //Nothingverse
-        "15" : "332.jpg", //Dark Link Fusion (D.HERO-Zombyra T/D/D)
+        "15" : "332.jpg", //Dark Link Fusion (D.HERO-Zombire T/D/D)
     }
 
 //Full Art consts
     const FULL_ART_URL = URL_START + "FullArts/";
 
     const FULL_ART_NAMES = [ //may not be whole so they're applied for normal cards as well as custom cards with slightly different names
-     "Darkest Knight", "Slifer", "Destroyer Phoenix", "- Plasma", "Atomic", "Dominance", "Zorc", "Uria,", "The Unstoppable Exodia Incarnate", "Malicious Bane",
+     "Slifer", "Uria,", //dragons
+     "Darkest Knight", "Destroyer Phoenix", "- Plasma", "Atomic", "Dominance", "Zorc", "The Unstoppable Exodia Incarnate", "Malicious Bane", //Zombire
         "Infernal Gainer", "Malicious Edge",
     ]; //string should be the exact name of the file too
 
@@ -105,27 +106,27 @@
 //YaniYa Frame names
 
     const LINK_FUSION_NAMES_YY = [
-     "Elemental HERO - The Dark Bright", "Masked HERO - The Dark Law", "Lord of The Dark", "Evil HERO - The Dark Gaia", "Evil HERO - The Darkest Knight", //D.HERO-Zombyra T/D/D
+     "Elemental HERO - The Dark Bright", "Masked HERO - The Dark Law", "Lord of The Dark", "Evil HERO - The Dark Gaia", "Evil HERO - The Darkest Knight", //D.HERO-Zombire T/D/D
         "The Neosphere of Darkness", "Destiny HERO - Dusktopia",
     ];
 
     const EVOLUTION_NAMES_YY = [
      "Horus the Black Flame Dragon LV8", "Horus the Black Flame Deity", "Ruddy Rose Dragon", //AZDG Uria
      "Supreme King Gate Infinity", "Sphere of Chaos", "Elemental HERO Spirit of Neos", "Light and Darkness Dragonlord", "Cyberdark End Dragon", //Nothingverse
-     "Underworld Fighter Balmung", "The Dark Crusader", "Despair from The Dark", "Destiny HERO - Dogma", "Destiny HERO - Destroyer Phoenix Enforcer", //D.HERO-Zombyra T/D/D
+     "Underworld Fighter Balmung", "The Dark Crusader", "Despair from The Dark", "Destiny HERO - Dogma", "Destiny HERO - Destroyer Phoenix Enforcer", //D.HERO-Zombire T/D/D
         "RevenDread Executor", "Evil HERO - Infernal Gainer", "Evil HERO - Sinister Necrom", "Evil HERO - Malicious Edge", "The Wicked Dreadroot",
      "The Unstoppable Exodia Incarnate", //Exodia
     ];
 
     const EVOLUTION_SPELL_NAMES_YY = [
-     "RevenDread Evolution", //D.HERO-Zombyra T/D/D
+     "RevenDread Evolution", //D.HERO-Zombire T/D/D
         
     ];
 
     const SPIRITUAL_NAMES_YY = [
      "Jack-o-Bolan", "Doomkaiser Dragon / Assault Mode", //AZDG Uria
      "Shell of Chaos", "Supreme King Gate Zero", "Black Dragon Colapserpent", //Nothingverse
-     "Fear from The Dark", "Destiny HERO - Plasma", "Elemental HERO - The Deep Darkness", //D.HERO-Zombyra T/D/D
+     "Fear from The Dark", "Destiny HERO - Plasma", "Elemental HERO - The Deep Darkness", //D.HERO-Zombire T/D/D
     ];
 
     const TOKEN_NAMES_YY = [
@@ -245,16 +246,19 @@
 
         if(!fullArtName)
         {
-            cardFront.find('.effect_txt').css('z-index', '0');
-            cardFront.find('.monster_line').removeClass('monster-line-fullart');
             cardFront.find('[class*="_txt"]').removeClass('white-outline-text');
             cardFront.find('[class*="_lbl"]').removeClass('white-outline-text');
+        }
+        if(!fullArtName && !pendulumFullArtName)
+        {
+            cardFront.find('.effect_txt').css('z-index', '0');
+            cardFront.find('.monster_line').removeClass('monster-line-fullart');
         }
         if(!smallFullArtName)
         {
             //cardFront.find('.name_txt').removeClass('white-outline-text');
         }
-        if(!fullArtName && !smallFullArtName)
+        if(!fullArtName && !smallFullArtName && !pendulumFullArtName)
         {
             cardFront.removeClass('full-art');
             cardFront.find('.black_arrow').css('z-index', '0');
@@ -263,9 +267,9 @@
             return;
         }
 
-    //both
+    //all
         cardFront.addClass('full-art');
-        cardFront.data('pic', FULL_ART_URL + (fullArtName != undefined ? fullArtName : smallFullArtName) + ".png");
+        cardFront.data('pic', FULL_ART_URL + (fullArtName || smallFullArtName || pendulumFullArtName) + ".png");
         cardFront.find('.black_arrow').css('z-index', '-1');
         cardFront.find('.pendulum_front').css('z-index', '-3');
         cardFront.find('.card_border, .card_color').css('z-index', '-5');
@@ -275,14 +279,17 @@
             //cardFront.find('.name_txt').addClass('white-outline-text');
             return;
         }
-    //fullArt
+    //pendulumFullArt
         cardFront.find('.effect_txt').css('z-index', '-1');
         cardFront.find('.monster_line').addClass('monster-line-fullart');
+        if(pendulumFullArtName)
+            return;
+    //fullArt
         cardFront.find('[class*="_lbl"]').addClass('white-outline-text');
         cardFront.find('[class*="_txt"]').addClass('white-outline-text');
     }
-
     unsafeWindow.applyFullArt = applyFullArt;
+    
 })();
 
 $(document).ready(function () {
