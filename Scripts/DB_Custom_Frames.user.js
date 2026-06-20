@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DB_Custom_Frames
 // @namespace    http://tampermonkey.net/
-// @version      1.9.2
+// @version      1.9.3
 // @homepageURL  https://github.com/yanislavivanovyanev/YIY_YGO_Customs/
 // @updateURL    https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
 // @downloadURL  https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
@@ -239,16 +239,9 @@
 //Full Arts
     function applyFullArt(cardFront, isPendulum)
     {
-        const fullArtName = FULL_ART_NAMES.find(name => cardFront.data('name').includes(name));
-        const smallFullArtName = SMALL_FULL_ART_NAMES.find(name => cardFront.data('name').includes(name));
-        const pendulumFullArtName = PENDULUM_FULL_ART_NAMES.find(name => cardFront.data('name').includes(name));
-
-        if(!isPendulum) pendulumFullArtName = false;
-        else
-        {
-            fullArtName = false;
-            smallFullArtName = false;
-        } 
+        const fullArtName = !isPendulum && FULL_ART_NAMES.find(name => cardFront.data('name').includes(name));
+        const smallFullArtName = !isPendulum && SMALL_FULL_ART_NAMES.find(name => cardFront.data('name').includes(name));
+        const pendulumFullArtName = isPendulum && PENDULUM_FULL_ART_NAMES.find(name => cardFront.data('name').includes(name));
 
         if(!fullArtName)
         {
