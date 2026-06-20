@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DB_Custom_Frames
 // @namespace    http://tampermonkey.net/
-// @version      1.9.1
+// @version      1.9.2
 // @homepageURL  https://github.com/yanislavivanovyanev/YIY_YGO_Customs/
 // @updateURL    https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
 // @downloadURL  https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
@@ -32,11 +32,15 @@
 
     const FULL_ART_NAMES = [ //may not be whole so they're applied for normal cards as well as custom cards with slightly different names
      "Darkest Knight", "Slifer", "Destroyer Phoenix", "- Plasma", "Atomic", "Dominance", "Zorc", "Uria,", "The Unstoppable Exodia Incarnate", "Malicious Bane",
-        "Infernal Gainer", "Malicious Edge", "Dread Slayer", 
+        "Infernal Gainer", "Malicious Edge",
     ]; //string should be the exact name of the file too
 
     const SMALL_FULL_ART_NAMES = [ //doesn't change anything other than the picture
-     "Dark Law", "Vendread Slayer", "Doom Lord", 
+     "Dark Law", "vendread Slayer", "Doom Lord", 
+    ];
+
+    const PENDULUM_FULL_ART_NAMES = [
+     "dread Slayer",
     ];
 
     const style = document.createElement('style');
@@ -233,10 +237,18 @@
     unsafeWindow.applyDeckSpecificSleeves = applyDeckSpecificSleeves;
 
 //Full Arts
-    function applyFullArt(cardFront)
+    function applyFullArt(cardFront, isPendulum)
     {
         const fullArtName = FULL_ART_NAMES.find(name => cardFront.data('name').includes(name));
         const smallFullArtName = SMALL_FULL_ART_NAMES.find(name => cardFront.data('name').includes(name));
+        const pendulumFullArtName = PENDULUM_FULL_ART_NAMES.find(name => cardFront.data('name').includes(name));
+
+        if(!isPendulum) pendulumFullArtName = false;
+        else
+        {
+            fullArtName = false;
+            smallFullArtName = false;
+        } 
 
         if(!fullArtName)
         {
