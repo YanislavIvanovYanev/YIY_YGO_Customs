@@ -1,0 +1,30 @@
+ability: ""
+arrows: ""
+atk: "300"
+attribute: "DARK"
+card_type: "Monster"
+custom: 2
+def: "600"
+effect: "Gain 300 atk per other Warrior or Knight on the field and 100 per in the GY. If this destroys a monster you can Search 1 Destiny HERO. OPT: Equip to a HERO. OPT while in the GY (Quick, cannot be negated): Equip to a Destiny HERO; Lose 500 LP; When this leaves the field return it to the deck instead."
+flip: 0
+id: 5887596
+initialized: true
+is_effect: 1
+is_link: false
+level: 3
+monster_color: "Effect"
+name: "Destiny HERO - Blade Master"
+ocg: 0
+ocg_limit: 3
+passcode: ""
+pendulum: 1
+pendulum_effect: "OPT (cannot be negated): Move to the field (unless activated from the hand this turn). While equipped: The equipped to monster gains 100 atk per Warrior or Knight on the field and in the GY; This still counts as a \"Destiny HERO - Blade Master\" monster for Destiny HEROes and can be used for them as a material; If the equipped to monster is removed from the field you can use the first effect as a Quick, otherwise destroy this card."
+pic: "3"
+rush: 0
+scale: 3
+serial_number: ""
+tcg: 0
+tcg_limit: 3
+treated_as: "Destiny HERO - Blade Master"
+type: "Warrior"
+username: "YaniYa"

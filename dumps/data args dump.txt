@@ -1,0 +1,30 @@
+atk: "4000"
+attribute: "DARK"
+card_type: "Monster"
+def: "4000"
+effect: "1 Tuner + 1+ non-Tuner DARK Pendulum Monsters\nThis card's name becomes \"Supreme King Z-ARC\" while on the field. After damage calculation, if this card destroyed an opponent's monster by battle, OR when this card inflicts battle damage to your opponent: You can Special Summon up to 2 \"Supreme King Dragon\" monsters from your Deck, Extra Deck, and/or GY in Defense Position. If this card in the Monster Zone is destroyed by battle or card effect: You can place this card in your Pendulum Zone."
+effect_lowercase: "1 tuner + 1+ non-tuner dark pendulum monsters\nthis card's name becomes \"supreme king z-arc\" while on the field. after damage calculation, if this card destroyed an opponent's monster by battle, or when this card inflicts battle damage to your opponent: you can special summon up to 2 \"supreme king dragon\" monsters from your deck, extra deck, and/or gy in defense position. if this card in the monster zone is destroyed by battle or card effect: you can place this card in your pendulum zone."
+flip: 0
+id: 14977
+initialized: true
+is_effect: 1
+is_link: false
+level: 12
+monster_color: "Synchro"
+name: "Supreme King Z-ARC - Synchro Universe"
+name_lowercase: "supreme king z-arc - synchro universe"
+ocg: 1
+ocg_limit: 3
+passcode: "48654267"
+pendulum: 1
+pendulum_effect: "You can Tribute 1 \"Supreme King Dragon\" or \"Supreme King Gate\" Pendulum Monster; Special Summon this card. You can only use this effect of \"Supreme King Z-ARC - Synchro Universe\" once per turn."
+pendulum_effect_lowercase: "you can tribute 1 \"supreme king dragon\" or \"supreme king gate\" pendulum monster; special summon this card. you can only use this effect of \"supreme king z-arc - synchro universe\" once per turn."
+pic: "1"
+scale: 1
+serial_number: "48654267"
+tcg: 1
+tcg_date: "2024-04-26"
+tcg_limit: 3
+treated_as: "Supreme King Z-ARC - Synchro Universe"
+type: "Dragon"
+updated: "2024-04-26"

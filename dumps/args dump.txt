@@ -1,0 +1,28 @@
+0 (id): 5500127
+1 (name): "Doomkaiser Dragon / Assault Mode"
+2 (ver of ^): "Doomkaiser Dragon / Assault Mode"
+3 (effect): "[ Black Dragon / High Dragon ]\nOnce per BP: Send 1 Zombie to the GY to gain 500 atk for every Zombie there this turn. OPT in MP1: Banish FD to banish summon \"Doomkaiser Dragon\"."
+4 (pend effect): ""
+5 (card type): "Monster"
+6 (monster type): "Ritual"
+7: 1
+8 (type): "Zombie"
+9 (attribute): "FIRE"
+10 (level): 8
+11 (special monster type): "Spirit"
+12: 0
+13: 0
+14 (pend scale): 0
+15: ""
+16 (atk): "2900"
+17 (def): "2000"
+18 (copies per deck): 1
+19 (ver of ^): 1
+20: ""
+21: 0
+22: 0
+23 (pic): "1"
+24: 1
+25 (passcode): "YaniYa"
+26: 0
+27: undefined

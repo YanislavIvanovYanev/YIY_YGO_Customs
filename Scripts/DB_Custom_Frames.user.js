@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DB_Custom_Frames
 // @namespace    http://tampermonkey.net/
-// @version      1.9.6
+// @version      1.9.7
 // @homepageURL  https://github.com/yanislavivanovyanev/YIY_YGO_Customs/
 // @updateURL    https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
 // @downloadURL  https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
@@ -14,7 +14,7 @@
 (function() {
     'use strict';
 
-    const VERSION = "v2.4";
+    const FRAME_VER = "v2.5";
 
     const URL_START = "https://yanislavivanovyanev.github.io/YIY_YGO_Customs/";
 
@@ -32,7 +32,7 @@
 
     const FULL_ART_NAMES = [ //may not be whole so they're applied for normal cards as well as custom cards with slightly different names
      "Slifer", "Uria,", //dragons
-     "Darkest Knight", "Destroyer Phoenix", "- Plasma", "Atomic", "Dominance", "Zorc", "The Unstoppable Exodia Incarnate", "Malicious Bane", //Zombire
+     "Darkest Knight", "Destroyer Phoenix", "- Plasma", " Atomic", "Dominance", "Zorc", "The Unstoppable Exodia Incarnate", "Malicious Bane", //Zombire
         "Infernal Gainer", "Malicious Edge",
     ]; //string should be the exact name of the file too
 
@@ -64,18 +64,21 @@
 
 //Frame urls
     const FRAME_URL = URL_START + "Frames/Custom/";
-
+    //misc
     const BORDER = FRAME_URL + "Border.png";
     const TOKEN_FRAME = URL_START + "Frames/Raw/token_front2.webp?v=3";
-
+    //regular FA
     const EFFECT_FA_FRAME = FRAME_URL + "EffectFA.png";
     const RITUAL_FA_FRAME = FRAME_URL + "RitualFA.png";
     const FUSION_FA_FRAME = FRAME_URL + "Fusion.png";
-
+    //pendulum FA
+    const PENDULUM_MEDIUM_FA_FRAME = FRAME_URL + "PendulumMediumFA.png";
+    const PENDULUM_LARGE_FA_FRAME = FRAME_URL + "PendulumLargeFA.png";
+    //custom FA
     const LINK_FUSION_FA_FRAME = FRAME_URL + "LinkFusionFA.png";
     const EVOLUTION_FA_FRAME = FRAME_URL + "EvolutionFA.png";
     const SPIRITUAL_FA_FRAME = FRAME_URL + "SpiritualFA.png";
-
+    //custom
     const LINK_FUSION_FRAME = FRAME_URL + "LinkFusion.png";
     const EVOLUTION_FRAME = FRAME_URL + "Evolution.png";
     const EVOLUTION_SPELL_FRAME = FRAME_URL + "EvolutionSpell.png";
@@ -136,24 +139,37 @@
 
 //Helper methods
 
+    const findFullArtName = (type, cardFront) => type.find(name => cardFront.data('name').includes(name));
+
     function setElement(cardFront, element, elementName)
     {
-        cardFront.find(elementName).attr("src", element + "?v=" + VERSION);
+        cardFront.find(elementName).attr("src", element + "?v=" + FRAME_VER);
     }
-    
+
 
 //Frames
-    function setFrame(cardFront, frame)
+    function setFrame(cardFront, frame, pendulumFrame)
     {
         setElement(cardFront, frame, ".card_color");
+        if(pendulumFrame) setElement(cardFront, pendulumFrame, ".pendulum_front");
     }
-    function applyCustomFrame(cardFront, cardName, creator, color)
+    function getPendulumSizeFAFrame(cardFront)
+    {
+        const size = cardFront.find(".pendulum_front").attr("src") ?? "";
+
+        if(size.includes("medium")) return PENDULUM_MEDIUM_FA_FRAME;
+        if(size.includes("large")) return PENDULUM_LARGE_FA_FRAME;
+        return undefined;
+    }
+    function applyCustomFrame(cardFront, cardName, creator, color, isPendulum)
     {
         if(!cardFront || !cardName)
             return;
 
-        const fullArtName = FULL_ART_NAMES.find(name => cardFront.data('name').includes(name));
+        const fullArtName = findFullArtName(FULL_ART_NAMES, cardFront);
+        const pendulumFAFrame = findFullArtName(PENDULUM_FULL_ART_NAMES, cardFront) ? getPendulumSizeFAFrame(cardFront) : undefined;
         
+    //reyx200 custom colors
         if(creator == "reyx200")
         {
             let matches = true;
@@ -161,11 +177,11 @@
             if(fullArtName)
             {
                 let matches2 = true;
-                if(LINK_FUSION_NAMES_RX.includes(cardName)) setFrame(cardFront, LINK_FUSION_FA_FRAME);
-                else if(EVOLUTION_NAMES_RX.includes(cardName)) setFrame(cardFront, EVOLUTION_FA_FRAME);
-                else if(SPIRITUAL_NAMES_RX.includes(cardName)) setFrame(cardFront, SPIRITUAL_FA_FRAME);
-                // else if(EVOLUTION_SPELL_NAMES_RX.includes(cardName)) setFrame(cardFront, EVOLUTION_SPELL_FA_FRAME);
-                // else if(TOKEN_NAMES_RX.includes(cardName)) setFrame(cardFront, TOKEN_FA_FRAME);
+                if(LINK_FUSION_NAMES_RX.includes(cardName)) setFrame(cardFront, LINK_FUSION_FA_FRAME, pendulumFAFrame);
+                else if(EVOLUTION_NAMES_RX.includes(cardName)) setFrame(cardFront, EVOLUTION_FA_FRAME, pendulumFAFrame);
+                else if(SPIRITUAL_NAMES_RX.includes(cardName)) setFrame(cardFront, SPIRITUAL_FA_FRAME, pendulumFAFrame);
+                // else if(EVOLUTION_SPELL_NAMES_RX.includes(cardName)) setFrame(cardFront, EVOLUTION_SPELL_FA_FRAME, pendulumFAFrame);
+                // else if(TOKEN_NAMES_RX.includes(cardName)) setFrame(cardFront, TOKEN_FA_FRAME, pendulumFAFrame);
                 else matches2 = false;
                 if(matches2)
                     return;
@@ -181,7 +197,8 @@
             if(matches)
                 return;
         }
-
+    
+    //YaniYa custom colors
         if(creator == "YaniYa")
         {
             let matches = true;
@@ -189,11 +206,11 @@
             if(fullArtName)
             {
                 let matches2 = true;
-                if(LINK_FUSION_NAMES_YY.includes(cardName)) setFrame(cardFront, LINK_FUSION_FA_FRAME);
-                else if(EVOLUTION_NAMES_YY.includes(cardName)) setFrame(cardFront, EVOLUTION_FA_FRAME);
-                else if(SPIRITUAL_NAMES_YY.includes(cardName)) setFrame(cardFront, SPIRITUAL_FA_FRAME);
-                // else if(EVOLUTION_SPELL_NAMES_YY.includes(cardName)) setFrame(cardFront, EVOLUTION_SPELL_FA_FRAME);
-                // else if(TOKEN_NAMES_YY.includes(cardName)) setFrame(cardFront, TOKEN_FA_FRAME);
+                if(LINK_FUSION_NAMES_YY.includes(cardName)) setFrame(cardFront, LINK_FUSION_FA_FRAME, pendulumFAFrame);
+                else if(EVOLUTION_NAMES_YY.includes(cardName)) setFrame(cardFront, EVOLUTION_FA_FRAME, pendulumFAFrame);
+                else if(SPIRITUAL_NAMES_YY.includes(cardName)) setFrame(cardFront, SPIRITUAL_FA_FRAME, pendulumFAFrame);
+                // else if(EVOLUTION_SPELL_NAMES_YY.includes(cardName)) setFrame(cardFront, EVOLUTION_SPELL_FA_FRAME, pendulumFAFrame);
+                // else if(TOKEN_NAMES_YY.includes(cardName)) setFrame(cardFront, TOKEN_FA_FRAME, pendulumFAFrame);
                 else matches2 = false;
                 if(matches2)
                     return;
@@ -208,12 +225,13 @@
             if(matches)
                 return;
         }
-
+    
+    //simple colors (to full art frames)
         if(!fullArtName)
             return;
-        if(color == "Effect") setFrame(cardFront, EFFECT_FA_FRAME);
-        else if(color == "Ritual") setFrame(cardFront, RITUAL_FA_FRAME);
-        else if(color == "Fusion") setFrame(cardFront, FUSION_FA_FRAME);
+        if(color == "Effect") setFrame(cardFront, EFFECT_FA_FRAME, pendulumFAFrame);
+        else if(color == "Ritual") setFrame(cardFront, RITUAL_FA_FRAME, pendulumFAFrame);
+        else if(color == "Fusion") setFrame(cardFront, FUSION_FA_FRAME, pendulumFAFrame);
         
     }
     unsafeWindow.applyCustomFrame = applyCustomFrame;
@@ -238,25 +256,24 @@
     unsafeWindow.applyDeckSpecificSleeves = applyDeckSpecificSleeves;
 
 //Full Arts
-    function applyFullArt(cardFront, isPendulum)
+    function applyFullArt(cardFront, isPendulum, color, ability)
     {
-        const fullArtName = !isPendulum ? FULL_ART_NAMES.find(name => cardFront.data('name').includes(name)) : undefined;
-        const smallFullArtName = !isPendulum ? SMALL_FULL_ART_NAMES.find(name => cardFront.data('name').includes(name)) : undefined;
-        const pendulumFullArtName = isPendulum ? PENDULUM_FULL_ART_NAMES.find(name => cardFront.data('name').includes(name)) : undefined;
+        const fullArtName = !isPendulum ? findFullArtName(FULL_ART_NAMES, cardFront) : undefined;
+        const smallFullArtName = !isPendulum ? findFullArtName(SMALL_FULL_ART_NAMES, cardFront) : undefined;
+        const pendulumFullArtName = isPendulum ? findFullArtName(PENDULUM_FULL_ART_NAMES, cardFront) : undefined;
 
-        if(!fullArtName)
-        {
-            cardFront.find('[class*="_txt"]').removeClass('white-outline-text');
-            cardFront.find('[class*="_lbl"]').removeClass('white-outline-text');
-        }
+        const whitenName = color == "Ritual" && ability == "Spirit";
+
         if(!fullArtName && !pendulumFullArtName)
         {
             cardFront.find('.effect_txt').css('z-index', '0');
             cardFront.find('.monster_line').removeClass('monster-line-fullart');
+            cardFront.find('[class*="_txt"]').removeClass('white-outline-text');
+            cardFront.find('[class*="_lbl"]').removeClass('white-outline-text');
         }
-        if(!smallFullArtName)
+        if(!smallFullArtName && !whitenName)
         {
-            //cardFront.find('.name_txt').removeClass('white-outline-text');
+            cardFront.find('.name_txt').removeClass('white-outline-text');
         }
         if(!fullArtName && !smallFullArtName && !pendulumFullArtName)
         {
@@ -267,26 +284,21 @@
             return;
         }
 
-        //only small full haven't htier pics replaced
-
     //all
         cardFront.addClass('full-art');
-        cardFront.data('pic', FULL_ART_URL + (fullArtName || smallFullArtName || pendulumFullArtName) + ".png");
+        cardFront.data('pic', FULL_ART_URL + (fullArtName || smallFullArtName || pendulumFullArtName).trimStart().replace(/[ .]+$/, "") + ".png");
         cardFront.find('.black_arrow').css('z-index', '-1');
         cardFront.find('.pendulum_front').css('z-index', '-3');
         cardFront.find('.card_border, .card_color').css('z-index', '-5');
     //smallFullArt
-        if(smallFullArtName)
+        if(smallFullArtName || whitenName)
         {
-            //cardFront.find('.name_txt').addClass('white-outline-text');
+            cardFront.find('.name_txt').addClass('white-outline-text');
             return;
         }
-    //pendulumFullArt
+    //fullArt and pendulumFullArt
         cardFront.find('.effect_txt').css('z-index', '-1');
         cardFront.find('.monster_line').addClass('monster-line-fullart');
-        if(pendulumFullArtName)
-            return;
-    //fullArt
         cardFront.find('[class*="_lbl"]').addClass('white-outline-text');
         cardFront.find('[class*="_txt"]').addClass('white-outline-text');
     }
