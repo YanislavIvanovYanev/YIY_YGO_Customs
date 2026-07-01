@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DB_Custom_Frames
 // @namespace    http://tampermonkey.net/
-// @version      1.9.8
+// @version      1.9.9
 // @homepageURL  https://github.com/yanislavivanovyanev/YIY_YGO_Customs/
 // @updateURL    https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
 // @downloadURL  https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
@@ -14,7 +14,7 @@
 (function() {
     'use strict';
 
-    const FRAME_VER = "v2.5";
+    const FRAME_VER = "v2.6";
 
     const URL_START = "https://yanislavivanovyanev.github.io/YIY_YGO_Customs/";
 
@@ -227,7 +227,7 @@
         }
     
     //simple colors (to full art frames)
-        if(!fullArtName)
+        if(!fullArtName && !pendulumFAFrame)
             return;
         if(color == "Effect") setFrame(cardFront, EFFECT_FA_FRAME, pendulumFAFrame);
         else if(color == "Ritual") setFrame(cardFront, RITUAL_FA_FRAME, pendulumFAFrame);
@@ -262,8 +262,8 @@
         const smallFullArtName = !isPendulum ? findFullArtName(SMALL_FULL_ART_NAMES, cardFront) : undefined;
         const pendulumFullArtName = isPendulum ? findFullArtName(PENDULUM_FULL_ART_NAMES, cardFront) : undefined;
 
-        const whiteName = ability == "Spirit" && color == "Ritual";
-        console.log(cardFront.data('name'), ability, color, ability == "Spirit", color == "Ritual", whiteName);
+        const whiteName = !fullArtName && !smallFullArtName && !pendulumFullArtName //all others whiten name by themselves
+         && ability == "Spirit" && color == "Ritual";
 
         if(!fullArtName && !pendulumFullArtName)
         {
