@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DB_Custom_Frames
 // @namespace    http://tampermonkey.net/
-// @version      1.9.5
+// @version      1.9.6
 // @homepageURL  https://github.com/yanislavivanovyanev/YIY_YGO_Customs/
 // @updateURL    https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
 // @downloadURL  https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
@@ -49,10 +49,10 @@
       .white-outline-text {
         color: white !important;
         text-shadow:
-          -2px -2px 0 black,
-           2px -2px 0 black,
-          -2px  2px 0 black,
-           2px  2px 0 black !important;
+          -1px -1px 0 black,
+           1px -1px 0 black,
+          -1px  1px 0 black,
+           1px  1px 0 black !important;
       }
       .monster-line-fullart {
             background-color: white !important;
@@ -266,6 +266,8 @@
             cardFront.find('.card_border, .card_color').css('z-index', '0');
             return;
         }
+
+        //only small full haven't htier pics replaced
 
     //all
         cardFront.addClass('full-art');

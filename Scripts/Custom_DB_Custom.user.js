@@ -4,7 +4,7 @@
 // @name         Custom_DB_Custom
 
 // @description  Adds options to customize DB and make it more streamer friendly
-// @version      1.5.5
+// @version      1.5.6
 // @author       Killburne
 // @license		 MIT
 // @namespace    https://www.yugioh-api.com/
@@ -3592,7 +3592,7 @@ $(document).ready(function() {
                     card.removeClass('full-art');
                 }
 
-                unsafeWindow.applyFullArt(card, card.data('pendulum_effect') != ""); //my change
+                unsafeWindow.applyFullArt(card, !!card.data('pendulum_effect')); //my change
 
                 origLoadImage();
 
