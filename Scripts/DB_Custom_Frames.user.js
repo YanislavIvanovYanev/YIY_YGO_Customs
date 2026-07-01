@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DB_Custom_Frames
 // @namespace    http://tampermonkey.net/
-// @version      2.1.1
+// @version      2.1.2
 // @homepageURL  https://github.com/yanislavivanovyanev/YIY_YGO_Customs/
 // @updateURL    https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
 // @downloadURL  https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
@@ -49,10 +49,18 @@
       .white-outline-text {
         color: white !important;
         text-shadow:
-          -2px -1px 0 black,
-           2px -1px 0 black,
-          -2px  1px 0 black,
-           2px  1px 0 black !important;
+          -1px -1px 0 black,
+           1px -1px 0 black,
+          -1px  1px 0 black,
+           1px  1px 0 black !important;
+      }
+      .white-outline-name {
+        color: white !important;
+        text-shadow:
+          -3px -1px 0 black,
+           3px -1px 0 black,
+          -3px  1px 0 black,
+           3px  1px 0 black !important;
       }
       .monster-line-fullart {
             background-color: white !important;
@@ -265,6 +273,7 @@
         const whiteName = !fullArtName && !smallFullArtName && !pendulumFullArtName //all others whiten name by themselves
          && ability == "Spirit" && color == "Ritual";
 
+        cardFront.find('.name_txt').removeClass('white-outline-name');
         if(!pendulumFullArtName) cardFront.find('.card_pendulum_effect_txt').css('z-index', '0');
         if(!fullArtName && !pendulumFullArtName)
         {
@@ -272,10 +281,6 @@
             cardFront.find('.monster_line').removeClass('monster-line-fullart');
             cardFront.find('[class*="_txt"]').removeClass('white-outline-text');
             cardFront.find('[class*="_lbl"]').removeClass('white-outline-text');
-        }
-        if(!smallFullArtName && !whiteName)
-        {
-            cardFront.find('.name_txt').removeClass('white-outline-text');
         }
         if(!fullArtName && !smallFullArtName && !pendulumFullArtName && !whiteName)
         {
@@ -287,9 +292,8 @@
         }
 
     //whiteName
-        function whitenName() {
-            cardFront.find('.name_txt').addClass('white-outline-text');
-        }
+        function whitenName(){ cardFront.find('.name_txt').addClass('white-outline-name'); }
+
         if(whiteName)
         {
             whitenName();
@@ -313,6 +317,7 @@
         cardFront.find('[class*="_lbl"]').addClass('white-outline-text');
         cardFront.find('[class*="_txt"]').addClass('white-outline-text');
         if(pendulumFullArtName) cardFront.find('.card_pendulum_effect_txt').css('z-index', '-1');
+        whitenName();
     }
     unsafeWindow.applyFullArt = applyFullArt;
     
