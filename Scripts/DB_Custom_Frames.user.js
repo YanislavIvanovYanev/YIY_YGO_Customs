@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DB_Custom_Frames
 // @namespace    http://tampermonkey.net/
-// @version      1.9.9
+// @version      2.1.1
 // @homepageURL  https://github.com/yanislavivanovyanev/YIY_YGO_Customs/
 // @updateURL    https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
 // @downloadURL  https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
@@ -49,10 +49,10 @@
       .white-outline-text {
         color: white !important;
         text-shadow:
-          -1px -1px 0 black,
-           1px -1px 0 black,
-          -1px  1px 0 black,
-           1px  1px 0 black !important;
+          -2px -1px 0 black,
+           2px -1px 0 black,
+          -2px  1px 0 black,
+           2px  1px 0 black !important;
       }
       .monster-line-fullart {
             background-color: white !important;
@@ -265,6 +265,7 @@
         const whiteName = !fullArtName && !smallFullArtName && !pendulumFullArtName //all others whiten name by themselves
          && ability == "Spirit" && color == "Ritual";
 
+        if(!pendulumFullArtName) cardFront.find('.card_pendulum_effect_txt').css('z-index', '0');
         if(!fullArtName && !pendulumFullArtName)
         {
             cardFront.find('.effect_txt').css('z-index', '0');
@@ -311,6 +312,7 @@
         cardFront.find('.monster_line').addClass('monster-line-fullart');
         cardFront.find('[class*="_lbl"]').addClass('white-outline-text');
         cardFront.find('[class*="_txt"]').addClass('white-outline-text');
+        if(pendulumFullArtName) cardFront.find('.card_pendulum_effect_txt').css('z-index', '-1');
     }
     unsafeWindow.applyFullArt = applyFullArt;
     
