@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DB_Custom_Frames
 // @namespace    http://tampermonkey.net/
-// @version      1.9.7
+// @version      1.9.8
 // @homepageURL  https://github.com/yanislavivanovyanev/YIY_YGO_Customs/
 // @updateURL    https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
 // @downloadURL  https://raw.githubusercontent.com/yanislavivanovyanev/YIY_YGO_Customs/main/Scripts/DB_Custom_Frames.user.js
@@ -151,11 +151,11 @@
     function setFrame(cardFront, frame, pendulumFrame)
     {
         setElement(cardFront, frame, ".card_color");
-        if(pendulumFrame) setElement(cardFront, pendulumFrame, ".pendulum_front");
+        if(pendulumFrame) setElement(cardFront, pendulumFrame, ".pendulum_front img");
     }
     function getPendulumSizeFAFrame(cardFront)
     {
-        const size = cardFront.find(".pendulum_front").attr("src") ?? "";
+        const size = cardFront.find(".pendulum_front img").attr("src") ?? "";
 
         if(size.includes("medium")) return PENDULUM_MEDIUM_FA_FRAME;
         if(size.includes("large")) return PENDULUM_LARGE_FA_FRAME;
@@ -256,13 +256,14 @@
     unsafeWindow.applyDeckSpecificSleeves = applyDeckSpecificSleeves;
 
 //Full Arts
-    function applyFullArt(cardFront, isPendulum, color, ability)
+    function applyFullArt(cardFront, ability, color, isPendulum)
     {
         const fullArtName = !isPendulum ? findFullArtName(FULL_ART_NAMES, cardFront) : undefined;
         const smallFullArtName = !isPendulum ? findFullArtName(SMALL_FULL_ART_NAMES, cardFront) : undefined;
         const pendulumFullArtName = isPendulum ? findFullArtName(PENDULUM_FULL_ART_NAMES, cardFront) : undefined;
 
-        const whitenName = color == "Ritual" && ability == "Spirit";
+        const whiteName = ability == "Spirit" && color == "Ritual";
+        console.log(cardFront.data('name'), ability, color, ability == "Spirit", color == "Ritual", whiteName);
 
         if(!fullArtName && !pendulumFullArtName)
         {
@@ -271,11 +272,11 @@
             cardFront.find('[class*="_txt"]').removeClass('white-outline-text');
             cardFront.find('[class*="_lbl"]').removeClass('white-outline-text');
         }
-        if(!smallFullArtName && !whitenName)
+        if(!smallFullArtName && !whiteName)
         {
             cardFront.find('.name_txt').removeClass('white-outline-text');
         }
-        if(!fullArtName && !smallFullArtName && !pendulumFullArtName)
+        if(!fullArtName && !smallFullArtName && !pendulumFullArtName && !whiteName)
         {
             cardFront.removeClass('full-art');
             cardFront.find('.black_arrow').css('z-index', '0');
@@ -284,16 +285,25 @@
             return;
         }
 
-    //all
+    //whiteName
+        function whitenName() {
+            cardFront.find('.name_txt').addClass('white-outline-text');
+        }
+        if(whiteName)
+        {
+            whitenName();
+            return;
+        }
+    //rest
         cardFront.addClass('full-art');
         cardFront.data('pic', FULL_ART_URL + (fullArtName || smallFullArtName || pendulumFullArtName).trimStart().replace(/[ .]+$/, "") + ".png");
         cardFront.find('.black_arrow').css('z-index', '-1');
         cardFront.find('.pendulum_front').css('z-index', '-3');
         cardFront.find('.card_border, .card_color').css('z-index', '-5');
     //smallFullArt
-        if(smallFullArtName || whitenName)
+        if(smallFullArtName)
         {
-            cardFront.find('.name_txt').addClass('white-outline-text');
+            whitenName();
             return;
         }
     //fullArt and pendulumFullArt

@@ -4,7 +4,7 @@
 // @name         Custom_DB_Custom
 
 // @description  Adds options to customize DB and make it more streamer friendly
-// @version      1.5.7
+// @version      1.5.8
 // @author       Killburne
 // @license		 MIT
 // @namespace    https://www.yugioh-api.com/
@@ -3567,7 +3567,7 @@ $(document).ready(function() {
                     }
                 }
 
-                unsafeWindow.applyCustomFrame(card, args[1], args[25], args[6]); //my change
+                unsafeWindow.applyCustomFrame(card, args[1], args[25], args[6], !!args[4]); //my change
                 unsafeWindow.removeCustom(card); //my change
 
                 if (!getConfigEntry('darkModeCards')) {
@@ -3595,7 +3595,7 @@ $(document).ready(function() {
                 const isPendulum = !!card.data('pendulum_effect');
                 const color = card.data('monster_color');
 
-                unsafeWindow.applyFullArt(card, isPendulum, color, card.data('ability')); //my change
+                unsafeWindow.applyFullArt(card, card.data('ability'), color, isPendulum); //my change
 
                 origLoadImage();
 
